@@ -54,7 +54,6 @@ from flapjax.utils.print_utils import (
     map_verbosity_level,
     print_table_line,
     warn,
-    warn_if_32_bit,
 )
 from flapjax.utils.utils import (
     check_type,
@@ -796,8 +795,8 @@ class BaseBeamStructure:
 
         # perturbations in mass matrix integration
         g_ab = jnp.zeros(12)
-        g_ab = g_ab.at[:3].set(self.gravity_vec)
-        g_ab = g_ab.at[6:9].set(self.gravity_vec)
+        g_ab = g_ab.at[:3].set(jnp.array(self.gravity_vec))
+        g_ab = g_ab.at[6:9].set(jnp.array(self.gravity_vec))
         p_d_g = jnp.einsum("ijk,k->ij", p_d, g_ab)  # (n_elem, 6)
 
         # computes dm/dd @ p @ g_ab
@@ -815,7 +814,7 @@ class BaseBeamStructure:
 
         # perturbations in gravity direction, (n_nodes, 3, 3)
         d_g_d_omega = vmap(vec_to_skew, 0, 0)(
-            jnp.einsum("ikj,k->ij", rmat, self.gravity_vec)
+            jnp.einsum("ikj,k->ij", rmat, jnp.array(self.gravity_vec))
         )
 
         # adding terms of (n_elem, 12, 3)
@@ -844,7 +843,7 @@ class BaseBeamStructure:
         """
         # (n_lumped, 3, 3)
         d_g_d_omega = vmap(vec_to_skew, 0, 0)(
-            jnp.einsum("ikj,k->ij", rmat[self.m_lumped_index, ...], self.gravity_vec)
+            jnp.einsum("ikj,k->ij", rmat[self.m_lumped_index, ...], jnp.array(self.gravity_vec))
         )
 
         return (
@@ -1177,8 +1176,6 @@ class BaseBeamStructure:
         freq_range: tuple[float | Array, float | Array] = (0.0, jnp.inf),
         damp_range: tuple[float | Array, float | Array] = (-jnp.inf, jnp.inf),
     ) -> tuple[Array, Array, Array, Array, Array]:
-        warn_if_32_bit()
-
         m_nodal, k_nodal = self.make_nodal_m_k(case=case, int_order=int_order)
 
         # dispatch based on stiffness symmetry and mass positive-definiteness;
@@ -2060,9 +2057,6 @@ class BaseBeamStructure:
 
         if load_steps < 1:
             raise ValueError("load_steps must be at least 1")
-
-        # add a warning if using 32-bit floats
-        warn_if_32_bit()
 
         # check inputs
         if f_ext_follower is not None:
@@ -3071,9 +3065,6 @@ class BaseBeamStructure:
         :param load_steps: Number of load steps to apply the external loads over.
         :return: Structure dataclass containing results of the dynamic analysis.
         """
-
-        # add a warning if using 32-bit floats
-        warn_if_32_bit()
 
         if load_steps <= 0:
             raise ValueError("load_steps must be a positive integer")

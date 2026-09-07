@@ -3,8 +3,6 @@ from jax import numpy as jnp
 
 from flapjax.models.flying_spaghetti.flying_spaghetti import generate_flying_spaghetti
 
-jax.config.update("jax_enable_x64", True)
-
 
 class TestParallelSpaghetti:
     r"""

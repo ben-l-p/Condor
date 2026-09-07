@@ -359,8 +359,6 @@ def plot_sweeps(bound_csv_: Path, wake_csv_: Path, out_path: Path) -> None:
 
 
 if __name__ == "__main__":
-    jax.config.update("jax_enable_x64", True)
-
     out_dir = Path(__file__).parent / "panel_scaling_output"
     bound_csv = out_dir / "bound_sweep.csv"
     wake_csv = out_dir / "wake_sweep.csv"

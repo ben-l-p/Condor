@@ -19,8 +19,6 @@ if __name__ == "__main__":
     Obtain the time history of the cantilever wing case, and the gradient of the wing root bending moment with respect 
     to some structural and aerodynamic properties. This does not verify with finite differences.
     """
-    jax.config.update("jax_enable_x64", True)
-
     # problem discretisation
     m = 10  # number of chordwise panels
     n = 20  # number of spanwise panels

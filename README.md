@@ -39,7 +39,7 @@ uv sync
 ```
 
 An extensive test suite is included to verify the correctness of the code. This verifies the numerics, and takes
-approximately 30 minutes to run on an M2 MacBook Air. Tests can be run with pytest, either against a `flapjax-full`
+approximately 40 minutes to run on an M2 MacBook Air. Tests can be run with pytest, either against a `flapjax-full`
 install (`pytest --pyargs flapjax`) or from a repository clone (`uv run pytest`).
 
 

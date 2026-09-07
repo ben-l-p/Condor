@@ -1,4 +1,3 @@
-import jax
 from jax import Array
 from jax import numpy as jnp
 
@@ -365,9 +364,6 @@ def generate_simple_hale(
 
 if __name__ == "__main__":
     # trim the simple hale aircraft and run a gust case
-    jax.config.update("jax_enable_x64", True)
-
-    # parameters
     u_inf_mag: float = 10.0
     gust_intensity: float = 0.2
     gust_length: float = 1.0 * u_inf_mag  # 1 second gust duration

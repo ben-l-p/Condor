@@ -32,7 +32,6 @@ from flapjax.utils.print_utils import (
     get_verbosity,
     map_verbosity_level,
     warn,
-    warn_if_32_bit,
 )
 from flapjax.utils.utils import make_pytree
 
@@ -173,8 +172,6 @@ class BaseCoupledAeroelastic:
         fsi_relaxation: float = 0.6,
         fsi_omega_min: float = 1e-2,
     ) -> AeroelasticCase:
-        warn_if_32_bit()
-
         prescribed_dofs: tuple[int, ...] = self.structure.make_prescribed_dofs_tuple(
             prescribed_dofs
         )
@@ -322,8 +319,6 @@ class BaseCoupledAeroelastic:
         cs_ang_t: dict[str, Array] | None = None,
         cs_vel_t: dict[str, Array] | None = None,
     ) -> AeroelasticCase:
-        warn_if_32_bit()
-
         # check control inputs
         if cs_ang_t is not None:
             for key in cs_ang_t:

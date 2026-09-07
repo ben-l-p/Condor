@@ -21,7 +21,7 @@ from flapjax.structure import BeamStructure
 from flapjax.structure.time_integration import TimeIntegrator
 from flapjax.structure.utils import get_solve_dofs
 from flapjax.utils.data_structures import ConvergenceSettings, ConvergenceStatus
-from flapjax.utils.print_utils import warn, warn_if_32_bit
+from flapjax.utils.print_utils import warn
 from flapjax.utils.utils import make_pytree
 
 
@@ -255,8 +255,6 @@ class NonlinearBeamLinearAero:
         r"""
         Dynamic aeroelastic solve with nonlinear beam and linear UVLM.
         """
-        warn_if_32_bit()
-
         ref_cs_ang = self.aero.reference.cs_ang
         if cs_ang_t is not None:
             for key, series in cs_ang_t.items():

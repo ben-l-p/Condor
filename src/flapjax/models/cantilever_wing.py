@@ -1,6 +1,5 @@
 from pathlib import Path
 
-import jax
 from jax import Array
 from jax import numpy as jnp
 
@@ -69,8 +68,6 @@ def generate_cantilever_wing(
 
 
 if __name__ == "__main__":
-    jax.config.update("jax_enable_x64", True)
-
     coupled_system = generate_cantilever_wing()
     result = coupled_system.static_solve(
         f_ext_dead=None,

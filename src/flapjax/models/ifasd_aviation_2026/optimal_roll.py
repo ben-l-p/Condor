@@ -18,7 +18,6 @@ from flapjax.structure.gradients.data_structures import StructuralGradsToCompute
 from flapjax.utils.data_structures import ConvergenceSettings
 
 if __name__ == "__main__":
-    jax.config.update("jax_enable_x64", True)
     print(jax.devices())
 
     # case parameters for a quick evaluation with a coarse discretisation and short time window

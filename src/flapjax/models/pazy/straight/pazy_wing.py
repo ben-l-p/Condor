@@ -1,6 +1,5 @@
 from typing import Literal
 
-import jax
 from jax import Array
 from jax import numpy as jnp
 
@@ -83,8 +82,6 @@ if __name__ == "__main__":
     r"""
     Run an example static Pazy case and print the tip deflection to console.
     """
-    jax.config.update("jax_enable_x64", True)
-
     rho = 1.225
     aoa_ = jnp.deg2rad(7.0)
     u_inf_mag = 60.0

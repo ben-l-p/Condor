@@ -76,13 +76,6 @@ def warn(message: str, **kwargs) -> None:
         )
 
 
-def warn_if_32_bit() -> None:
-    if not jax.config.read("jax_enable_x64"):
-        warn(
-            'Running with 32-bit floating point precision. Using 64-bit with "jax.config.update("jax_enable_x64", '
-            'True)" is recommended'
-        )
-
 
 def jax_print(
     message: str, verbose_level: VerbosityLevel = "verbose", **kwargs
