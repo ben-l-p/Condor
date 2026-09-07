@@ -2389,7 +2389,7 @@ from flapjax.models.pazy.straight.pazy_wing import make_pazy_wing</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
@@ -2402,16 +2402,14 @@ from flapjax.models.pazy.straight.pazy_wing import make_pazy_wing</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">jax</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">"jax_enable_x64"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># 64-bit is essential for structural analysis</span>
-<span class="n">set_verbosity</span><span class="p">(</span><span class="s2">"silent"</span><span class="p">)</span>  <span class="c1"># suppress console prints as there would be a lot for 1k+ cases</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">set_verbosity</span><span class="p">(</span><span class="s2">"silent"</span><span class="p">)</span>  <span class="c1"># suppress console prints as there would be a lot for 1k+ cases</span>
 
 <span class="c1"># ensure that the XLA flags have worked</span>
 <span class="k">assert</span> <span class="n">jax</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span> <span class="o">==</span> <span class="n">n_case</span><span class="p">,</span> <span class="p">(</span>
     <span class="sa">f</span><span class="s2">"Expected </span><span class="si">{</span><span class="n">n_case</span><span class="si">}</span><span class="s2"> devices, got </span><span class="si">{</span><span class="n">jax</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
 <span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-3">jax.config.update("jax_enable_x64", True)  # 64-bit is essential for structural analysis
-set_verbosity("silent")  # suppress console prints as there would be a lot for 1k+ cases
+<div class="clipboard-copy-txt" id="cell-3">set_verbosity("silent")  # suppress console prints as there would be a lot for 1k+ cases
 
 # ensure that the XLA flags have worked
 assert jax.device_count() == n_case, (

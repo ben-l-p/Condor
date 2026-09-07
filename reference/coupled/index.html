@@ -3618,15 +3618,15 @@
 
                   <details class="mkdocstrings-source">
                     <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
+<span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">structure</span><span class="p">:</span> <span class="n">BeamStructure</span><span class="p">,</span>
     <span class="n">aero</span><span class="p">:</span> <span class="n">UVLM</span><span class="p">,</span>
@@ -3743,7 +3743,8 @@ variables are obtained.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">104</span>
+<span class="normal">105</span>
 <span class="normal">106</span>
 <span class="normal">107</span>
 <span class="normal">108</span>
@@ -3769,8 +3770,7 @@ variables are obtained.</p>
 <span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_design_variables</span><span class="p">(</span>
+<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_design_variables</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span>
     <span class="n">grads_to_compute</span><span class="p">:</span> <span class="n">AeroelasticGradsToCompute</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -3946,7 +3946,8 @@ variables are obtained.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">134</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">133</span>
+<span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
 <span class="normal">137</span>
@@ -3974,8 +3975,7 @@ variables are obtained.</p>
 <span class="normal">159</span>
 <span class="normal">160</span>
 <span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reference_configuration</span><span class="p">(</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reference_configuration</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
     <span class="n">horseshoe</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -4105,7 +4105,12 @@ dynamic case.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">444</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">439</span>
+<span class="normal">440</span>
+<span class="normal">441</span>
+<span class="normal">442</span>
+<span class="normal">443</span>
+<span class="normal">444</span>
 <span class="normal">445</span>
 <span class="normal">446</span>
 <span class="normal">447</span>
@@ -4132,12 +4137,7 @@ dynamic case.</p>
 <span class="normal">468</span>
 <span class="normal">469</span>
 <span class="normal">470</span>
-<span class="normal">471</span>
-<span class="normal">472</span>
-<span class="normal">473</span>
-<span class="normal">474</span>
-<span class="normal">475</span>
-<span class="normal">476</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialise_dynamic</span><span class="p">(</span>
+<span class="normal">471</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialise_dynamic</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">static_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span> <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroelasticCase</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
@@ -4965,15 +4965,15 @@ structure path is a PVD; for snapshots it is a single VTU.</p>
 
                   <details class="mkdocstrings-source">
                     <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
+<span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">structure</span><span class="p">:</span> <span class="n">BeamStructure</span><span class="p">,</span>
     <span class="n">aero</span><span class="p">:</span> <span class="n">UVLM</span><span class="p">,</span>
@@ -10335,7 +10335,8 @@ variables are obtained.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">104</span>
+<span class="normal">105</span>
 <span class="normal">106</span>
 <span class="normal">107</span>
 <span class="normal">108</span>
@@ -10361,8 +10362,7 @@ variables are obtained.</p>
 <span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_design_variables</span><span class="p">(</span>
+<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_design_variables</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span>
     <span class="n">grads_to_compute</span><span class="p">:</span> <span class="n">AeroelasticGradsToCompute</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -10538,7 +10538,8 @@ variables are obtained.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">134</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">133</span>
+<span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
 <span class="normal">137</span>
@@ -10566,8 +10567,7 @@ variables are obtained.</p>
 <span class="normal">159</span>
 <span class="normal">160</span>
 <span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reference_configuration</span><span class="p">(</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reference_configuration</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
     <span class="n">horseshoe</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -10697,7 +10697,12 @@ dynamic case.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">444</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">439</span>
+<span class="normal">440</span>
+<span class="normal">441</span>
+<span class="normal">442</span>
+<span class="normal">443</span>
+<span class="normal">444</span>
 <span class="normal">445</span>
 <span class="normal">446</span>
 <span class="normal">447</span>
@@ -10724,12 +10729,7 @@ dynamic case.</p>
 <span class="normal">468</span>
 <span class="normal">469</span>
 <span class="normal">470</span>
-<span class="normal">471</span>
-<span class="normal">472</span>
-<span class="normal">473</span>
-<span class="normal">474</span>
-<span class="normal">475</span>
-<span class="normal">476</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialise_dynamic</span><span class="p">(</span>
+<span class="normal">471</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialise_dynamic</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">static_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span> <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroelasticCase</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
@@ -15935,9 +15935,7 @@ the aero linearisation reference state.</p>
 <span class="normal">359</span>
 <span class="normal">360</span>
 <span class="normal">361</span>
-<span class="normal">362</span>
-<span class="normal">363</span>
-<span class="normal">364</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dynamic_solve</span><span class="p">(</span>
+<span class="normal">362</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dynamic_solve</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">init_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -15953,8 +15951,6 @@ the aero linearisation reference state.</p>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Dynamic aeroelastic solve with nonlinear beam and linear UVLM.</span>
 <span class="sd">    """</span>
-    <span class="n">warn_if_32_bit</span><span class="p">()</span>
-
     <span class="n">ref_cs_ang</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aero</span><span class="o">.</span><span class="n">reference</span><span class="o">.</span><span class="n">cs_ang</span>
     <span class="k">if</span> <span class="n">cs_ang_t</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">series</span> <span class="ow">in</span> <span class="n">cs_ang_t</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>

@@ -2472,7 +2472,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
@@ -2485,11 +2485,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">jax</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jax</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jax</span><span class="w"> </span><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">jnp</span>
-
-<span class="n">jax</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">"jax_enable_x64"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># set to 64-bit precision for better numerical accuracy in the static solve</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.models.geradin_beam.geradin_beam</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_geradin_beam</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.structure</span><span class="w"> </span><span class="kn">import</span> <span class="n">BeamStructure</span><span class="p">,</span> <span class="n">StructureCase</span><span class="p">,</span> <span class="n">StructureFullStates</span>
@@ -2498,11 +2495,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="n">set_verbosity</span><span class="p">(</span><span class="s2">"silent"</span><span class="p">)</span>  <span class="c1"># silence the solver output for this example</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-1">import jax
-from jax import Array
+<div class="clipboard-copy-txt" id="cell-1">from jax import Array
 from jax import numpy as jnp
-
-jax.config.update("jax_enable_x64", True)  # set to 64-bit precision for better numerical accuracy in the static solve
 
 from flapjax.models.geradin_beam.geradin_beam import generate_geradin_beam
 from flapjax.structure import BeamStructure, StructureCase, StructureFullStates

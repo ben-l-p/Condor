@@ -2582,8 +2582,6 @@ os.environ["XLA_FLAGS"] = (
 <span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.coupled</span><span class="w"> </span><span class="kn">import</span> <span class="n">CoupledAeroelastic</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.models.simple_hale.simple_hale</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_simple_hale</span>
 
-<span class="n">jax</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">"jax_enable_x64"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-
 <span class="k">assert</span> <span class="n">jax</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span> <span class="o">==</span> <span class="n">n_case</span><span class="p">,</span> <span class="p">(</span>
     <span class="sa">f</span><span class="s2">"Expected </span><span class="si">{</span><span class="n">n_case</span><span class="si">}</span><span class="s2"> devices, got </span><span class="si">{</span><span class="n">jax</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
 <span class="p">)</span>
@@ -2600,8 +2598,6 @@ from jax import numpy as jnp
 from flapjax.aero.flowfields import ConstantFlowField, OneMinusCosineFlowField
 from flapjax.coupled import CoupledAeroelastic
 from flapjax.models.simple_hale.simple_hale import generate_simple_hale
-
-jax.config.update("jax_enable_x64", True)
 
 assert jax.device_count() == n_case, (
     f"Expected {n_case} devices, got {jax.device_count()}"
