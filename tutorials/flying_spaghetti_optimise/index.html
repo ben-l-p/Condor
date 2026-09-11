@@ -2497,8 +2497,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.models.flying_spaghetti.flying_spaghetti</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_flying_spaghetti</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.structure</span><span class="w"> </span><span class="kn">import</span> <span class="n">StructuralDesignVariables</span><span class="p">,</span> <span class="n">StructureFullStates</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.structure.gradients.data_structures</span><span class="w"> </span><span class="kn">import</span> <span class="n">StructuralGradsToCompute</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.structure</span><span class="w"> </span><span class="kn">import</span> <span class="n">StructureDesignVariables</span><span class="p">,</span> <span class="n">StructureFullStates</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.structure.gradients.data_structures</span><span class="w"> </span><span class="kn">import</span> <span class="n">StructureGradsToCompute</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.utils.print_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_verbosity</span>
 
 <span class="n">set_verbosity</span><span class="p">(</span><span class="s2">"warning"</span><span class="p">)</span>
@@ -2513,8 +2513,8 @@ from matplotlib import pyplot as plt
 from scipy.optimize import minimize
 
 from flapjax.models.flying_spaghetti.flying_spaghetti import generate_flying_spaghetti
-from flapjax.structure import StructuralDesignVariables, StructureFullStates
-from flapjax.structure.gradients.data_structures import StructuralGradsToCompute
+from flapjax.structure import StructureDesignVariables, StructureFullStates
+from flapjax.structure.gradients.data_structures import StructureGradsToCompute
 from flapjax.utils.print_utils import set_verbosity
 
 set_verbosity("warning")</div>
@@ -2612,7 +2612,7 @@ out_dir = Path("./flying_spaghetti_optimise/")</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
@@ -2627,7 +2627,7 @@ out_dir = Path("./flying_spaghetti_optimise/")</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cost</span><span class="p">(</span>
         <span class="n">states</span><span class="p">:</span> <span class="n">StructureFullStates</span><span class="p">,</span>
-        <span class="n">_</span><span class="p">:</span> <span class="n">StructuralDesignVariables</span><span class="p">,</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">StructureDesignVariables</span><span class="p">,</span>
         <span class="n">i_ts</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
     <span class="c1"># inner product of strains as a measure for how "straight" the spaghetti is</span>
@@ -2635,7 +2635,7 @@ out_dir = Path("./flying_spaghetti_optimise/")</div>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-3">def cost(
         states: StructureFullStates,
-        _: StructuralDesignVariables,
+        _: StructureDesignVariables,
         i_ts: int,
 ) -&gt; Array:
     # inner product of strains as a measure for how "straight" the spaghetti is
@@ -2667,7 +2667,7 @@ out_dir = Path("./flying_spaghetti_optimise/")</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
@@ -2717,7 +2717,7 @@ out_dir = Path("./flying_spaghetti_optimise/")</div>
         <span class="c1"># approx_grads reduces some of the cost of the gradients by removing the sensitivities of the mass and gyroscopic terms to the beam deformation</span>
         <span class="n">approx_grads</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="c1"># grads_to_compute allows for disabling sensitivities we don't need, which saves some time in the adjoint sweep</span>
-        <span class="n">grads_to_compute</span><span class="o">=</span><span class="n">StructuralGradsToCompute</span><span class="p">(</span>
+        <span class="n">grads_to_compute</span><span class="o">=</span><span class="n">StructureGradsToCompute</span><span class="p">(</span>
             <span class="n">x0</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">k_cs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">m_cs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -2805,7 +2805,7 @@ def make_sol(m_bar: np.ndarray) -&gt; tuple[float, Array]:
         # approx_grads reduces some of the cost of the gradients by removing the sensitivities of the mass and gyroscopic terms to the beam deformation
         approx_grads=True,
         # grads_to_compute allows for disabling sensitivities we don't need, which saves some time in the adjoint sweep
-        grads_to_compute=StructuralGradsToCompute(
+        grads_to_compute=StructureGradsToCompute(
             x0=False,
             k_cs=False,
             m_cs=True,

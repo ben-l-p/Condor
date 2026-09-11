@@ -2292,13 +2292,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.aero.flowfields</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConstantFlowField</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.models.pazy.straight.pazy_wing</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pazy_wing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.models.pazy.straight.pazy_wing</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_pazy_wing</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-1">from jax import numpy as jnp
 from matplotlib import pyplot as plt
 
 from flapjax.aero.flowfields import ConstantFlowField
-from flapjax.models.pazy.straight.pazy_wing import make_pazy_wing</div>
+from flapjax.models.pazy.straight.pazy_wing import generate_pazy_wing</div>
 </div>
 </div>
 </div>
@@ -2371,7 +2371,7 @@ physical_time = 1.5  # time to run the simulation for, in seconds</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
@@ -2384,7 +2384,7 @@ physical_time = 1.5  # time to run the simulation for, in seconds</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">case</span> <span class="o">=</span> <span class="n">make_pazy_wing</span><span class="p">(</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">case</span> <span class="o">=</span> <span class="n">generate_pazy_wing</span><span class="p">(</span>
     <span class="n">flowfield</span><span class="o">=</span><span class="n">ConstantFlowField</span><span class="p">(</span>
         <span class="n">u_inf</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">u_inf_mag</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)),</span>
         <span class="n">rho</span><span class="o">=</span><span class="mf">1.225</span><span class="p">,</span>
@@ -2396,7 +2396,7 @@ physical_time = 1.5  # time to run the simulation for, in seconds</div>
     <span class="n">node_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-3">case = make_pazy_wing(
+<div class="clipboard-copy-txt" id="cell-3">case = generate_pazy_wing(
     flowfield=ConstantFlowField(
         u_inf=jnp.array((u_inf_mag, 0.0, 0.0)),
         rho=1.225,

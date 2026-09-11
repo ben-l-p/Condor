@@ -2614,10 +2614,10 @@ f_ext = jnp.zeros((n_nodes, 6)).at[-1, 2].set(-load)</div>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="primal-solve-and-objective">Primal solve and objective<a class="anchor-link" href="#primal-solve-and-objective">¶</a></h2><p>We wrap <code>static_solve</code> in a function so that the same call signature is used for the reference solve and the two perturbed solves.</p>
 <p>The objective returns the vertical position of the tip node, read as the last entry of the <code>x</code> array in the <code>StructureFullStates</code> container.</p>
-<p>Note that the objective function must match the type signature of <code>StructuralObjectiveFunction</code>, being a function that takes arguments of:</p>
+<p>Note that the objective function must match the type signature of <code>StructureObjectiveFunction</code>, being a function that takes arguments of:</p>
 <ul>
 <li>StructureFullStates: Data structure which holds the solution of the static problem, such as strains and displacements.</li>
-<li>StructuralDesignVariables: Data structure which holds the design variables of the structure, such as the cross-sectional properties.</li>
+<li>StructureDesignVariables: Data structure which holds the design variables of the structure, such as the cross-sectional properties.</li>
 <li>int, Array or None: The current time step index, which is unused in static problems.</li>
 </ul>
 <p>and this function should return an <code>Array</code>, which is the value of the objective function for which we want to compute the gradient. Whilst this objective is generally chosen to be a scalar, it can also be a vector-valued function.</p>
@@ -2696,7 +2696,7 @@ obj_base = objective(base_result.get_full_states())  # compute the scalar object
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="solving-the-adjoint-system">Solving the adjoint system<a class="anchor-link" href="#solving-the-adjoint-system">¶</a></h2><p><code>BeamStructure.static_adjoint</code> linearises the primal residual and objective about the converged state and returns:</p>
 <ol>
-<li>A <code>StructuralDesignVariables</code> container <code>grads_adj</code> populated with the gradient of the objective with respect to every recognised design variable (nodal reference coordinates <code>x0</code>, orientation Euler angles, cross-sectional stiffness <code>k_cs</code>, cross-sectional inertia <code>m_cs</code>, lumped mass <code>m_lumped</code>, follower forces <code>f_ext_follower</code>, dead forces <code>f_ext_dead</code>, and any thrust histories). Fields that are not exposed on the case are left as <code>None</code>.</li>
+<li>A <code>StructureDesignVariables</code> container <code>grads_adj</code> populated with the gradient of the objective with respect to every recognised design variable (nodal reference coordinates <code>x0</code>, orientation Euler angles, cross-sectional stiffness <code>k_cs</code>, cross-sectional inertia <code>m_cs</code>, lumped mass <code>m_lumped</code>, follower forces <code>f_ext_follower</code>, dead forces <code>f_ext_dead</code>, and any thrust histories). Fields that are not exposed on the case are left as <code>None</code>.</li>
 <li>The adjoint state vector, which we do not use here but is returned for downstream chained-adjoint use-cases.</li>
 </ol>
 <p>One call therefore gives us the full gradient with respect to all design variables simultaneously — the cost is independent of the number of design variables and dominated by a single linear solve at the converged state.</p>

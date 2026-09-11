@@ -5642,7 +5642,7 @@ to a dynamic solve, only forward mode can be used to give the required adjoint.<
 
     <span class="n">p_j_p_varphi_flat</span> <span class="o">=</span> <span class="n">p_j_p_varphi_raw</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_f</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (n_f, n_dof)</span>
     <span class="n">p_j_p_x_flat</span> <span class="o">=</span> <span class="n">AeroelasticDesignVariables</span><span class="p">(</span>
-        <span class="n">structure_dv</span><span class="o">=</span><span class="n">StructuralDesignVariables</span><span class="p">(</span>
+        <span class="n">structure_dv</span><span class="o">=</span><span class="n">StructureDesignVariables</span><span class="p">(</span>
             <span class="o">**</span><span class="p">{</span>
                 <span class="n">k</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">p_j_p_x_raw</span><span class="o">.</span><span class="n">structure</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dv</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
             <span class="p">},</span>
@@ -5710,7 +5710,7 @@ to a dynamic solve, only forward mode can be used to give the required adjoint.<
         <span class="p">(</span><span class="n">adj_p_res_p_x_raw</span><span class="p">,)</span> <span class="o">=</span> <span class="n">jax</span><span class="o">.</span><span class="n">vmap</span><span class="p">(</span><span class="n">vjp_res_dv</span><span class="p">)(</span><span class="n">adj_full</span><span class="p">)</span>
 
         <span class="n">adj_p_res_p_x_flat</span> <span class="o">=</span> <span class="n">AeroelasticDesignVariables</span><span class="p">(</span>
-            <span class="n">structure_dv</span><span class="o">=</span><span class="n">StructuralDesignVariables</span><span class="p">(</span>
+            <span class="n">structure_dv</span><span class="o">=</span><span class="n">StructureDesignVariables</span><span class="p">(</span>
                 <span class="o">**</span><span class="p">{</span>
                     <span class="n">k</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">adj_p_res_p_x_raw</span><span class="o">.</span><span class="n">structure</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
                     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dv</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
@@ -6042,7 +6042,7 @@ initial states.</p>
         <span class="p">)</span>
 
         <span class="c1"># solve aero problem</span>
-        <span class="n">hg</span> <span class="o">=</span> <span class="n">inner_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">calculate_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi_</span><span class="p">)</span>
+        <span class="n">hg</span> <span class="o">=</span> <span class="n">inner_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">compute_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi_</span><span class="p">)</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">gamma_b</span><span class="p">,</span> <span class="n">gamma_w</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">zeta_w</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">f_steady</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">inner_case</span><span class="o">.</span><span class="n">aero</span><span class="o">.</span><span class="n">base_solve</span><span class="p">(</span>
                 <span class="n">q_nm1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -6083,7 +6083,7 @@ initial states.</p>
             <span class="n">vect</span><span class="o">=</span><span class="n">f_aero_beam_global</span><span class="p">,</span> <span class="n">rmat</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">hg</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
         <span class="p">)</span>
 
-        <span class="n">q_aero</span> <span class="o">=</span> <span class="n">AeroStates</span><span class="p">(</span>
+        <span class="n">q_aero</span> <span class="o">=</span> <span class="n">AeroFullStates</span><span class="p">(</span>
             <span class="n">gamma_b</span><span class="o">=</span><span class="n">gamma_b</span><span class="p">,</span>
             <span class="n">gamma_w</span><span class="o">=</span><span class="n">gamma_w</span><span class="p">,</span>
             <span class="n">zeta_w</span><span class="o">=</span><span class="n">zeta_w</span><span class="p">,</span>
@@ -6471,8 +6471,8 @@ VJP to this function.</p>
         <span class="n">varphi_n_</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
         <span class="n">v_n_</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
         <span class="n">t_n_</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
-        <span class="n">q_nm1_aero_</span><span class="p">:</span> <span class="n">AeroStates</span><span class="p">,</span>
-        <span class="n">q_n_aero_</span><span class="p">:</span> <span class="n">AeroStates</span><span class="p">,</span>
+        <span class="n">q_nm1_aero_</span><span class="p">:</span> <span class="n">AeroFullStates</span><span class="p">,</span>
+        <span class="n">q_n_aero_</span><span class="p">:</span> <span class="n">AeroFullStates</span><span class="p">,</span>
         <span class="n">dv__</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
         <span class="n">dv_full_</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
         <span class="n">f_aero_beam_n_</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
@@ -6544,7 +6544,7 @@ VJP to this function.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
     <span class="n">Array</span><span class="p">,</span>
     <span class="n">Array</span><span class="p">,</span>
-    <span class="n">StructuralDesignVariables</span><span class="p">,</span>
+    <span class="n">StructureDesignVariables</span><span class="p">,</span>
     <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
     <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -6790,7 +6790,7 @@ VJP to this function.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="tuple">tuple</span>[<span title="jax.Array">Array</span>, <span title="jax.Array">Array</span>, <span title="flapjax.structure.StructuralDesignVariables">StructuralDesignVariables</span>, <span title="flapjax.coupled.data_structures.AeroelasticDesignVariables">AeroelasticDesignVariables</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="float">float</span>]] | None, <span title="dict">dict</span>[<span title="str">str</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="float">float</span>]] | None]</code>
+                  <code><span title="tuple">tuple</span>[<span title="jax.Array">Array</span>, <span title="jax.Array">Array</span>, <span title="flapjax.structure.StructureDesignVariables">StructureDesignVariables</span>, <span title="flapjax.coupled.data_structures.AeroelasticDesignVariables">AeroelasticDesignVariables</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="float">float</span>]] | None, <span title="dict">dict</span>[<span title="str">str</span>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="float">float</span>]] | None]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6984,7 +6984,7 @@ used.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
     <span class="n">Array</span><span class="p">,</span>
     <span class="n">Array</span><span class="p">,</span>
-    <span class="n">StructuralDesignVariables</span><span class="p">,</span>
+    <span class="n">StructureDesignVariables</span><span class="p">,</span>
     <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
     <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -7914,7 +7914,7 @@ states.</p>
     <span class="n">include_initial_state_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">gmres_mode</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span>
         <span class="s2">"batched"</span><span class="p">,</span> <span class="s2">"incremental"</span>
-    <span class="p">]</span> <span class="o">=</span> <span class="s2">"batched"</span><span class="p">,</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="s2">"incremental"</span><span class="p">,</span>
     <span class="n">gmres_warm_start</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">gmres_precond</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">gmres_restart</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
@@ -8123,7 +8123,7 @@ incremental may be preferred on CPU.</p>
               </div>
             </td>
             <td>
-                  <code>&#39;batched&#39;</code>
+                  <code>&#39;incremental&#39;</code>
             </td>
           </tr>
           <tr class="doc-section-item">
@@ -8647,7 +8647,7 @@ step, and optional adjoint states.</p>
 <span class="normal">1385</span>
 <span class="normal">1386</span>
 <span class="normal">1387</span>
-<span class="normal">1388</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@jax</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">static_argnums</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="normal">1388</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@jax</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">static_argnums</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">17</span><span class="p">))</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">dynamic_adjoint</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span>
@@ -8660,7 +8660,7 @@ step, and optional adjoint states.</p>
     <span class="n">approx_grads</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">i_ts_adjoint_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
     <span class="n">include_initial_state_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">gmres_mode</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"batched"</span><span class="p">,</span> <span class="s2">"incremental"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"batched"</span><span class="p">,</span>
+    <span class="n">gmres_mode</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"batched"</span><span class="p">,</span> <span class="s2">"incremental"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"incremental"</span><span class="p">,</span>
     <span class="n">gmres_warm_start</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">gmres_precond</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">gmres_restart</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
@@ -8819,7 +8819,6 @@ step, and optional adjoint states.</p>
 
     <span class="n">d_j_d_x</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span>
     <span class="k">if</span> <span class="n">matrix_free</span><span class="p">:</span>
-        <span class="c1"># optional preconditioner for the matrix-free GMRES solves.</span>
         <span class="k">if</span> <span class="n">preconditioner</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">apply_precond</span> <span class="o">=</span> <span class="n">preconditioner</span>
         <span class="k">elif</span> <span class="n">gmres_precond</span><span class="p">:</span>
@@ -8920,9 +8919,10 @@ step, and optional adjoint states.</p>
             <span class="n">d_j_d_x_</span> <span class="o">+=</span> <span class="n">p_j_n_p_x</span>
 
             <span class="n">jax_print</span><span class="p">(</span>
-                <span class="s2">"</span><span class="se">\n</span><span class="s2">Solved adjoint for timestep </span><span class="si">{i_ts}</span><span class="s2"> (GMRES converged=</span><span class="si">{converged}</span><span class="s2">)"</span><span class="p">,</span>
+                <span class="s2">"</span><span class="se">\n</span><span class="s2">Solved adjoint for timestep </span><span class="si">{i_ts}</span><span class="s2"> (GMRES converged=</span><span class="si">{converged}</span><span class="s2">, max|adj|=</span><span class="si">{ma:.2e}</span><span class="s2">)"</span><span class="p">,</span>
                 <span class="n">i_ts</span><span class="o">=</span><span class="n">i_ts</span><span class="p">,</span>
                 <span class="n">converged</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">gmres_info</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="n">ma</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">adj_n</span><span class="p">)),</span>
                 <span class="n">verbose_level</span><span class="o">=</span><span class="s2">"normal"</span><span class="p">,</span>
             <span class="p">)</span>
 
@@ -10114,7 +10114,7 @@ this limit.</p>
 
     <span class="c1"># set solutions into case object</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">set_design_variables</span><span class="p">(</span>
-        <span class="n">coords</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">x0_reference</span><span class="p">,</span>
         <span class="n">k_cs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">k_cs</span><span class="p">,</span>
         <span class="n">m_cs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">m_cs</span><span class="p">,</span>
         <span class="n">m_lumped</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">m_lumped</span>
@@ -16335,7 +16335,7 @@ variables.</p>
 <span class="sd">     variables.</span>
 <span class="sd">    """</span>
     <span class="n">inner</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">case_from_dv</span><span class="p">(</span><span class="n">dv</span><span class="p">)</span>
-    <span class="n">hg</span> <span class="o">=</span> <span class="n">inner</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">calculate_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi</span><span class="p">)</span>
+    <span class="n">hg</span> <span class="o">=</span> <span class="n">inner</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">compute_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi</span><span class="p">)</span>
     <span class="n">aero_sol</span> <span class="o">=</span> <span class="n">inner</span><span class="o">.</span><span class="n">aero</span><span class="o">.</span><span class="n">solve_static</span><span class="p">(</span>
         <span class="n">t</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">aero</span><span class="o">.</span><span class="n">t</span><span class="p">,</span>
         <span class="n">hg</span><span class="o">=</span><span class="n">hg</span><span class="p">,</span>

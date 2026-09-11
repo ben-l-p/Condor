@@ -2275,7 +2275,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
@@ -2289,19 +2289,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">jax</span><span class="w"> </span><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">jnp</span><span class="p">,</span> <span class="n">Array</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jax</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jax</span><span class="w"> </span><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">jnp</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.aero.flowfields</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConstantFlowField</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.models.pazy.straight.pazy_wing</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pazy_wing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.models.pazy.straight.pazy_wing</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_pazy_wing</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">flapjax.utils.print_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_verbosity</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-1">import jax
-from jax import numpy as jnp, Array
+from jax import Array
+from jax import numpy as jnp
 from matplotlib import pyplot as plt
 
 from flapjax.aero.flowfields import ConstantFlowField
-from flapjax.models.pazy.straight.pazy_wing import make_pazy_wing
+from flapjax.models.pazy.straight.pazy_wing import generate_pazy_wing
 from flapjax.utils.print_utils import set_verbosity</div>
 </div>
 </div>
@@ -2415,7 +2417,7 @@ u_inf_mags = jnp.sqrt(q_inf * 2.0 / rho)  # velocity magnitudes corresponding to
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
@@ -2428,7 +2430,7 @@ u_inf_mags = jnp.sqrt(q_inf * 2.0 / rho)  # velocity magnitudes corresponding to
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">wing</span> <span class="o">=</span> <span class="n">make_pazy_wing</span><span class="p">(</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">wing</span> <span class="o">=</span> <span class="n">generate_pazy_wing</span><span class="p">(</span>
     <span class="n">flowfield</span><span class="o">=</span><span class="n">ConstantFlowField</span><span class="p">(</span>
         <span class="n">u_inf</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>  <span class="c1"># whilst this is zero, we overwrite it for every instance</span>
         <span class="n">rho</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span>
@@ -2443,7 +2445,7 @@ u_inf_mags = jnp.sqrt(q_inf * 2.0 / rho)  # velocity magnitudes corresponding to
     <span class="n">sweep</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-4">wing = make_pazy_wing(
+<div class="clipboard-copy-txt" id="cell-4">wing = generate_pazy_wing(
     flowfield=ConstantFlowField(
         u_inf=jnp.array([0.0, 0.0, 0.0]),  # whilst this is zero, we overwrite it for every instance
         rho=rho,

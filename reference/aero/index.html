@@ -1684,19 +1684,19 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.gradients.data_structures.AeroStates" class="md-nav__link">
+  <a href="#flapjax.aero.gradients.data_structures.AeroFullStates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AeroStates
+        AeroFullStates
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AeroStates">
+    <nav class="md-nav" aria-label="AeroFullStates">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.gradients.data_structures.AeroStates.n_states" class="md-nav__link">
+  <a href="#flapjax.aero.gradients.data_structures.AeroFullStates.n_states" class="md-nav__link">
     <span class="md-ellipsis">
       
         n_states
@@ -1707,7 +1707,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.gradients.data_structures.AeroStates.shapes" class="md-nav__link">
+  <a href="#flapjax.aero.gradients.data_structures.AeroFullStates.shapes" class="md-nav__link">
     <span class="md-ellipsis">
       
         shapes
@@ -1718,7 +1718,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.gradients.data_structures.AeroStates.from_vector" class="md-nav__link">
+  <a href="#flapjax.aero.gradients.data_structures.AeroFullStates.from_vector" class="md-nav__link">
     <span class="md-ellipsis">
       
         from_vector
@@ -1729,7 +1729,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.gradients.data_structures.AeroStates.ravel" class="md-nav__link">
+  <a href="#flapjax.aero.gradients.data_structures.AeroFullStates.ravel" class="md-nav__link">
     <span class="md-ellipsis">
       
         ravel
@@ -2265,10 +2265,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.utils.calculate_steady_forcing" class="md-nav__link">
+  <a href="#flapjax.aero.utils.compute_steady_forcing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        calculate_steady_forcing
+        compute_steady_forcing
       
     </span>
   </a>
@@ -3623,19 +3623,19 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.gradients.data_structures.AeroStates" class="md-nav__link">
+  <a href="#flapjax.aero.gradients.data_structures.AeroFullStates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AeroStates
+        AeroFullStates
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AeroStates">
+    <nav class="md-nav" aria-label="AeroFullStates">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.gradients.data_structures.AeroStates.n_states" class="md-nav__link">
+  <a href="#flapjax.aero.gradients.data_structures.AeroFullStates.n_states" class="md-nav__link">
     <span class="md-ellipsis">
       
         n_states
@@ -3646,7 +3646,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.gradients.data_structures.AeroStates.shapes" class="md-nav__link">
+  <a href="#flapjax.aero.gradients.data_structures.AeroFullStates.shapes" class="md-nav__link">
     <span class="md-ellipsis">
       
         shapes
@@ -3657,7 +3657,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.gradients.data_structures.AeroStates.from_vector" class="md-nav__link">
+  <a href="#flapjax.aero.gradients.data_structures.AeroFullStates.from_vector" class="md-nav__link">
     <span class="md-ellipsis">
       
         from_vector
@@ -3668,7 +3668,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.gradients.data_structures.AeroStates.ravel" class="md-nav__link">
+  <a href="#flapjax.aero.gradients.data_structures.AeroFullStates.ravel" class="md-nav__link">
     <span class="md-ellipsis">
       
         ravel
@@ -4204,10 +4204,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#flapjax.aero.utils.calculate_steady_forcing" class="md-nav__link">
+  <a href="#flapjax.aero.utils.compute_steady_forcing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        calculate_steady_forcing
+        compute_steady_forcing
       
     </span>
   </a>
@@ -7311,7 +7311,9 @@ snapshot: <code>(n_surf, )(m, n)</code>.</p>
 
 
 <a href="#flapjax.aero.data_structures.AeroCase.get_states" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_states</span><span class="p">(</span><span class="n">i_ts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroStates</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_states</span><span class="p">(</span>
+    <span class="n">i_ts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroFullStates</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -7361,7 +7363,7 @@ snapshot: <code>(n_surf, )(m, n)</code>.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="AeroStates (flapjax.aero.gradients.data_structures.AeroStates)" href="#flapjax.aero.gradients.data_structures.AeroStates">AeroStates</a></code>
+                  <code><a class="autorefs autorefs-internal" title="AeroFullStates (flapjax.aero.gradients.data_structures.AeroFullStates)" href="#flapjax.aero.gradients.data_structures.AeroFullStates">AeroFullStates</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -7397,7 +7399,7 @@ snapshot: <code>(n_surf, )(m, n)</code>.</p>
 <span class="normal">259</span>
 <span class="normal">260</span>
 <span class="normal">261</span>
-<span class="normal">262</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i_ts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroStates</span><span class="p">:</span>
+<span class="normal">262</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i_ts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroFullStates</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Obtain the aerodynamic state at a given timestep (used in the adjoint solution).</span>
 <span class="sd">    :param i_ts: Time step index (required for batched, ignored for snapshot).</span>
@@ -7407,14 +7409,14 @@ snapshot: <code>(n_surf, )(m, n)</code>.</p>
         <span class="k">if</span> <span class="n">i_ts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"i_ts must be provided for batched AeroCase"</span><span class="p">)</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_b_dot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">zeta_w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">AeroStates</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">AeroFullStates</span><span class="p">(</span>
             <span class="n">gamma_b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma_b</span><span class="o">.</span><span class="n">index_all</span><span class="p">(</span><span class="n">i_ts</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
             <span class="n">gamma_w</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma_w</span><span class="o">.</span><span class="n">index_all</span><span class="p">(</span><span class="n">i_ts</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
             <span class="n">gamma_b_dot</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma_b_dot</span><span class="o">.</span><span class="n">index_all</span><span class="p">(</span><span class="n">i_ts</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
             <span class="n">zeta_w</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">zeta_w</span><span class="o">.</span><span class="n">index_all</span><span class="p">(</span><span class="n">i_ts</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
         <span class="p">)</span>
     <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_b_dot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">zeta_w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-    <span class="k">return</span> <span class="n">AeroStates</span><span class="p">(</span>
+    <span class="k">return</span> <span class="n">AeroFullStates</span><span class="p">(</span>
         <span class="n">gamma_b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma_b</span><span class="p">,</span>
         <span class="n">gamma_w</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma_w</span><span class="p">,</span>
         <span class="n">gamma_b_dot</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma_b_dot</span><span class="p">,</span>
@@ -10472,12 +10474,12 @@ adjoint solve. Defaults to computing only the aerodynamic grid gradients.</p>
 
 
 
-<h5 id="flapjax.aero.gradients.data_structures.AeroStates" class="doc doc-heading">
-            <span class="doc doc-object-name doc-class-name">AeroStates</span>
+<h5 id="flapjax.aero.gradients.data_structures.AeroFullStates" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">AeroFullStates</span>
 
 
-<a href="#flapjax.aero.gradients.data_structures.AeroStates" class="headerlink" title="Permanent link">&para;</a></h5>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">AeroStates</span><span class="p">(</span>
+<a href="#flapjax.aero.gradients.data_structures.AeroFullStates" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">AeroFullStates</span><span class="p">(</span>
     <span class="n">gamma_b</span><span class="p">:</span> <span class="n">ArrayList</span><span class="p">,</span>
     <span class="n">gamma_w</span><span class="p">:</span> <span class="n">ArrayList</span><span class="p">,</span>
     <span class="n">gamma_b_dot</span><span class="p">:</span> <span class="n">ArrayList</span><span class="p">,</span>
@@ -10631,7 +10633,7 @@ adjoint solve. Defaults to computing only the aerodynamic grid gradients.</p>
 
 
 
-<h6 id="flapjax.aero.gradients.data_structures.AeroStates.n_states" class="doc doc-heading">
+<h6 id="flapjax.aero.gradients.data_structures.AeroFullStates.n_states" class="doc doc-heading">
             <span class="doc doc-object-name doc-attribute-name">n_states</span>
 
 
@@ -10639,7 +10641,7 @@ adjoint solve. Defaults to computing only the aerodynamic grid gradients.</p>
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
 
-<a href="#flapjax.aero.gradients.data_structures.AeroStates.n_states" class="headerlink" title="Permanent link">&para;</a></h6>
+<a href="#flapjax.aero.gradients.data_structures.AeroFullStates.n_states" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">n_states</span><span class="p">:</span> <span class="nb">int</span>
 </code></pre></div>
 
@@ -10681,11 +10683,11 @@ from <code>self.ravel()</code>.</p>
 <div class="doc doc-object doc-function">
 
 
-<h6 id="flapjax.aero.gradients.data_structures.AeroStates.shapes" class="doc doc-heading">
+<h6 id="flapjax.aero.gradients.data_structures.AeroFullStates.shapes" class="doc doc-heading">
             <span class="doc doc-object-name doc-function-name">shapes</span>
 
 
-<a href="#flapjax.aero.gradients.data_structures.AeroStates.shapes" class="headerlink" title="Permanent link">&para;</a></h6>
+<a href="#flapjax.aero.gradients.data_structures.AeroFullStates.shapes" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">shapes</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">OrderedDict</span><span class="p">[</span>
     <span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">ArrayListShape</span> <span class="o">|</span> <span class="kc">None</span>
 <span class="p">]</span>
@@ -10751,7 +10753,7 @@ from <code>self.ravel()</code>.</p>
 <div class="doc doc-object doc-function">
 
 
-<h6 id="flapjax.aero.gradients.data_structures.AeroStates.from_vector" class="doc doc-heading">
+<h6 id="flapjax.aero.gradients.data_structures.AeroFullStates.from_vector" class="doc doc-heading">
             <span class="doc doc-object-name doc-function-name">from_vector</span>
 
 
@@ -10759,18 +10761,18 @@ from <code>self.ravel()</code>.</p>
       <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
   </span>
 
-<a href="#flapjax.aero.gradients.data_structures.AeroStates.from_vector" class="headerlink" title="Permanent link">&para;</a></h6>
+<a href="#flapjax.aero.gradients.data_structures.AeroFullStates.from_vector" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">from_vector</span><span class="p">(</span>
     <span class="n">vect</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">shapes</span><span class="p">:</span> <span class="n">OrderedDict</span><span class="p">[</span>
         <span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">ArrayListShape</span> <span class="o">|</span> <span class="kc">None</span>
     <span class="p">],</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroStates</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroFullStates</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-        <p>Construct an AeroStates object from a vector of data and a corresponding dictionary of shapes, being the inverse
+        <p>Construct an AeroFullStates object from a vector of data and a corresponding dictionary of shapes, being the inverse
 of <code>self.ravel()</code>.</p>
 
 
@@ -10832,11 +10834,11 @@ of <code>self.ravel()</code>.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="AeroStates (flapjax.aero.gradients.data_structures.AeroStates)" href="#flapjax.aero.gradients.data_structures.AeroStates">AeroStates</a></code>
+                  <code><a class="autorefs autorefs-internal" title="AeroFullStates (flapjax.aero.gradients.data_structures.AeroFullStates)" href="#flapjax.aero.gradients.data_structures.AeroFullStates">AeroFullStates</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>AeroStates object.</p>
+                <p>AeroFullStates object.</p>
               </div>
             </td>
           </tr>
@@ -10862,15 +10864,15 @@ of <code>self.ravel()</code>.</p>
 <span class="k">def</span><span class="w"> </span><span class="nf">from_vector</span><span class="p">(</span>
     <span class="n">vect</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">shapes</span><span class="p">:</span> <span class="n">OrderedDict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="n">ArrayListShape</span> <span class="o">|</span> <span class="kc">None</span><span class="p">],</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroStates</span><span class="p">:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroFullStates</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
-<span class="sd">    Construct an AeroStates object from a vector of data and a corresponding dictionary of shapes, being the inverse</span>
+<span class="sd">    Construct an AeroFullStates object from a vector of data and a corresponding dictionary of shapes, being the inverse</span>
 <span class="sd">    of ``self.ravel()``.</span>
 <span class="sd">    :param vect: Aerodynamic state vector.</span>
 <span class="sd">    :param shapes: Dictionary of {name: shape} pairs of all arrays or ArrayLists within the data structure.</span>
-<span class="sd">    :return: AeroStates object.</span>
+<span class="sd">    :return: AeroFullStates object.</span>
 <span class="sd">    """</span>
-    <span class="k">return</span> <span class="n">AeroStates</span><span class="p">(</span><span class="o">**</span><span class="n">vect_to_arrs</span><span class="p">(</span><span class="n">vect</span><span class="p">,</span> <span class="n">shapes</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">AeroFullStates</span><span class="p">(</span><span class="o">**</span><span class="n">vect_to_arrs</span><span class="p">(</span><span class="n">vect</span><span class="p">,</span> <span class="n">shapes</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -10880,11 +10882,11 @@ of <code>self.ravel()</code>.</p>
 <div class="doc doc-object doc-function">
 
 
-<h6 id="flapjax.aero.gradients.data_structures.AeroStates.ravel" class="doc doc-heading">
+<h6 id="flapjax.aero.gradients.data_structures.AeroFullStates.ravel" class="doc doc-heading">
             <span class="doc doc-object-name doc-function-name">ravel</span>
 
 
-<a href="#flapjax.aero.gradients.data_structures.AeroStates.ravel" class="headerlink" title="Permanent link">&para;</a></h6>
+<a href="#flapjax.aero.gradients.data_structures.AeroFullStates.ravel" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">ravel</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Array</span>
 </code></pre></div>
 
@@ -13047,7 +13049,7 @@ outputs at timestep n.</p>
         <span class="n">zeta_b_n</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">zeta_b</span>
         <span class="n">zeta_w_n</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">zeta_w</span>
 
-    <span class="n">q_n</span> <span class="o">=</span> <span class="n">AeroStates</span><span class="p">(</span>
+    <span class="n">q_n</span> <span class="o">=</span> <span class="n">AeroFullStates</span><span class="p">(</span>
         <span class="n">gamma_b</span><span class="o">=</span><span class="n">gamma_b_n</span><span class="p">,</span>
         <span class="n">gamma_w</span><span class="o">=</span><span class="n">gamma_w_n</span><span class="p">,</span>
         <span class="n">gamma_b_dot</span><span class="o">=</span><span class="n">ref</span><span class="o">.</span><span class="n">gamma_b_dot</span><span class="p">,</span>
@@ -13092,7 +13094,7 @@ outputs at timestep n.</p>
             <span class="n">mirror_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">mirror_point</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="n">f_steady_n</span> <span class="o">=</span> <span class="n">calculate_steady_forcing</span><span class="p">(</span>
+    <span class="n">f_steady_n</span> <span class="o">=</span> <span class="n">compute_steady_forcing</span><span class="p">(</span>
         <span class="n">zeta_b</span><span class="o">=</span><span class="n">zeta_b_np1</span><span class="p">,</span>
         <span class="n">zeta_dot_b</span><span class="o">=</span><span class="n">zeta_dot_b_np1</span><span class="p">,</span>
         <span class="n">gamma_b</span><span class="o">=</span><span class="n">gamma_b_n</span><span class="p">,</span>
@@ -16569,12 +16571,12 @@ area of their corresponding panel.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="flapjax.aero.utils.calculate_steady_forcing" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">calculate_steady_forcing</span>
+<h4 id="flapjax.aero.utils.compute_steady_forcing" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">compute_steady_forcing</span>
 
 
-<a href="#flapjax.aero.utils.calculate_steady_forcing" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">calculate_steady_forcing</span><span class="p">(</span>
+<a href="#flapjax.aero.utils.compute_steady_forcing" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">compute_steady_forcing</span><span class="p">(</span>
     <span class="n">zeta_b</span><span class="p">:</span> <span class="n">ArrayList</span><span class="p">,</span>
     <span class="n">zeta_dot_b</span><span class="p">:</span> <span class="n">ArrayList</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">gamma_b</span><span class="p">:</span> <span class="n">ArrayList</span><span class="p">,</span>
@@ -16817,7 +16819,7 @@ perturbations.</p>
 <span class="normal">220</span>
 <span class="normal">221</span>
 <span class="normal">222</span>
-<span class="normal">223</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">calculate_steady_forcing</span><span class="p">(</span>
+<span class="normal">223</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_steady_forcing</span><span class="p">(</span>
     <span class="n">zeta_b</span><span class="p">:</span> <span class="n">ArrayList</span><span class="p">,</span>
     <span class="n">zeta_dot_b</span><span class="p">:</span> <span class="n">ArrayList</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">gamma_b</span><span class="p">:</span> <span class="n">ArrayList</span><span class="p">,</span>
@@ -21817,7 +21819,7 @@ full vector of strengths, or a sequence of strengths per surface.</p>
 
 <a href="#flapjax.aero.uvlm.UVLM.base_solve" class="headerlink" title="Permanent link">&para;</a></h5>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">base_solve</span><span class="p">(</span>
-    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroStates</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroFullStates</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">t_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">hg_n</span><span class="p">:</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">hg_nm1</span><span class="p">:</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -21863,7 +21865,7 @@ full vector of strengths, or a sequence of strengths per surface.</p>
                 <code>q_nm1</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="AeroStates (flapjax.aero.gradients.data_structures.AeroStates)" href="#flapjax.aero.gradients.data_structures.AeroStates">AeroStates</a> | None</code>
+                  <code><a class="autorefs autorefs-internal" title="AeroFullStates (flapjax.aero.gradients.data_structures.AeroFullStates)" href="#flapjax.aero.gradients.data_structures.AeroFullStates">AeroFullStates</a> | None</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -22129,7 +22131,7 @@ effective angle of attack.</p>
 <span class="normal">824</span>
 <span class="normal">825</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">base_solve</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroStates</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroFullStates</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">t_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">hg_n</span><span class="p">:</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">hg_nm1</span><span class="p">:</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -22219,7 +22221,7 @@ effective angle of attack.</p>
 
 <a href="#flapjax.aero.uvlm.UVLM.base_solve_from_grid" class="headerlink" title="Permanent link">&para;</a></h5>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">base_solve_from_grid</span><span class="p">(</span>
-    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroStates</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroFullStates</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">t_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">zeta_b_n</span><span class="p">:</span> <span class="n">ArrayList</span><span class="p">,</span>
     <span class="n">zeta_b_nm1</span><span class="p">:</span> <span class="n">ArrayList</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -22266,7 +22268,7 @@ effective angle of attack.</p>
                 <code>q_nm1</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="AeroStates (flapjax.aero.gradients.data_structures.AeroStates)" href="#flapjax.aero.gradients.data_structures.AeroStates">AeroStates</a> | None</code>
+                  <code><a class="autorefs autorefs-internal" title="AeroFullStates (flapjax.aero.gradients.data_structures.AeroFullStates)" href="#flapjax.aero.gradients.data_structures.AeroFullStates">AeroFullStates</a> | None</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -22751,7 +22753,7 @@ angle of attack.</p>
 <span class="normal">1119</span>
 <span class="normal">1120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">base_solve_from_grid</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroStates</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroFullStates</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">t_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">zeta_b_n</span><span class="p">:</span> <span class="n">ArrayList</span><span class="p">,</span>
     <span class="n">zeta_b_nm1</span><span class="p">:</span> <span class="n">ArrayList</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -22960,7 +22962,7 @@ angle of attack.</p>
             <span class="n">mirror_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mirror_point</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="n">f_steady</span> <span class="o">=</span> <span class="n">calculate_steady_forcing</span><span class="p">(</span>
+    <span class="n">f_steady</span> <span class="o">=</span> <span class="n">compute_steady_forcing</span><span class="p">(</span>
         <span class="n">zeta_b</span><span class="o">=</span><span class="n">zeta_b_n</span><span class="p">,</span>
         <span class="n">zeta_dot_b</span><span class="o">=</span><span class="n">zeta_b_dot_for_forces</span><span class="p">,</span>
         <span class="n">gamma_b</span><span class="o">=</span><span class="n">gamma_b_n</span><span class="p">,</span>
@@ -23406,7 +23408,7 @@ distance.</p>
 
     <span class="k">assert</span> <span class="n">case</span><span class="o">.</span><span class="n">gamma_b_dot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">case</span><span class="o">.</span><span class="n">zeta_w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
-    <span class="n">q_nm1</span> <span class="o">=</span> <span class="n">AeroStates</span><span class="p">(</span>
+    <span class="n">q_nm1</span> <span class="o">=</span> <span class="n">AeroFullStates</span><span class="p">(</span>
         <span class="n">gamma_b</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">gamma_b</span><span class="o">.</span><span class="n">index_all</span><span class="p">(</span><span class="n">i_ts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
         <span class="n">gamma_w</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">gamma_w</span><span class="o">.</span><span class="n">index_all</span><span class="p">(</span><span class="n">i_ts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
         <span class="n">gamma_b_dot</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">gamma_b_dot</span><span class="o">.</span><span class="n">index_all</span><span class="p">(</span><span class="n">i_ts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
@@ -24913,7 +24915,7 @@ requested.</p>
     <span class="p">)</span>
 
     <span class="n">inner_struct</span> <span class="o">=</span> <span class="n">struct_obj</span><span class="o">.</span><span class="n">case_from_dv</span><span class="p">(</span><span class="n">dv</span><span class="o">=</span><span class="n">dv</span><span class="o">.</span><span class="n">structure</span><span class="p">)</span>
-    <span class="n">hg_n</span> <span class="o">=</span> <span class="n">inner_struct</span><span class="o">.</span><span class="n">calculate_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi_n</span><span class="p">)</span>
+    <span class="n">hg_n</span> <span class="o">=</span> <span class="n">inner_struct</span><span class="o">.</span><span class="n">compute_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi_n</span><span class="p">)</span>
     <span class="n">hg_dot_n</span> <span class="o">=</span> <span class="n">inner_struct</span><span class="o">.</span><span class="n">make_hg_dot</span><span class="p">(</span><span class="n">hg</span><span class="o">=</span><span class="n">hg_n</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">v_n</span><span class="p">)</span>
 
     <span class="n">inner_case</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">case_from_dv</span><span class="p">(</span><span class="n">dv</span><span class="o">=</span><span class="n">dv</span><span class="o">.</span><span class="n">aero</span><span class="p">)</span>
@@ -25414,8 +25416,8 @@ requested.</p>
     <span class="p">)</span>
 
     <span class="n">inner_struct</span> <span class="o">=</span> <span class="n">struct_obj</span><span class="o">.</span><span class="n">case_from_dv</span><span class="p">(</span><span class="n">dv</span><span class="o">=</span><span class="n">dv</span><span class="o">.</span><span class="n">structure</span><span class="p">)</span>
-    <span class="n">hg_nm1</span> <span class="o">=</span> <span class="n">inner_struct</span><span class="o">.</span><span class="n">calculate_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi_nm1</span><span class="p">)</span>
-    <span class="n">hg_n</span> <span class="o">=</span> <span class="n">inner_struct</span><span class="o">.</span><span class="n">calculate_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi_n</span><span class="p">)</span>
+    <span class="n">hg_nm1</span> <span class="o">=</span> <span class="n">inner_struct</span><span class="o">.</span><span class="n">compute_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi_nm1</span><span class="p">)</span>
+    <span class="n">hg_n</span> <span class="o">=</span> <span class="n">inner_struct</span><span class="o">.</span><span class="n">compute_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi_n</span><span class="p">)</span>
 
     <span class="n">inner_case</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">case_from_dv</span><span class="p">(</span><span class="n">dv</span><span class="o">=</span><span class="n">dv</span><span class="o">.</span><span class="n">aero</span><span class="p">)</span>
 
@@ -26190,7 +26192,7 @@ forcing on the bound grid.</p>
     <span class="n">f_aero_beam_n</span> <span class="o">=</span> <span class="n">f_aero_beam_n</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="n">inner_struct</span> <span class="o">=</span> <span class="n">struct_obj</span><span class="o">.</span><span class="n">case_from_dv</span><span class="p">(</span><span class="n">dv</span><span class="o">=</span><span class="n">dv</span><span class="o">.</span><span class="n">structure</span><span class="p">)</span>
-    <span class="n">hg_n</span> <span class="o">=</span> <span class="n">inner_struct</span><span class="o">.</span><span class="n">calculate_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi_n</span><span class="p">)</span>
+    <span class="n">hg_n</span> <span class="o">=</span> <span class="n">inner_struct</span><span class="o">.</span><span class="n">compute_hg_from_varphi</span><span class="p">(</span><span class="n">varphi</span><span class="o">=</span><span class="n">varphi_n</span><span class="p">)</span>
     <span class="n">hg_dot_n</span> <span class="o">=</span> <span class="n">inner_struct</span><span class="o">.</span><span class="n">make_hg_dot</span><span class="p">(</span><span class="n">hg</span><span class="o">=</span><span class="n">hg_n</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">v_n</span><span class="p">)</span>
 
     <span class="n">inner_case</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">case_from_dv</span><span class="p">(</span><span class="n">dv</span><span class="o">=</span><span class="n">dv</span><span class="o">.</span><span class="n">aero</span><span class="p">)</span>
@@ -26219,7 +26221,7 @@ forcing on the bound grid.</p>
             <span class="n">mirror_point</span><span class="o">=</span><span class="n">inner_case</span><span class="o">.</span><span class="n">mirror_point</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="n">f_steady</span> <span class="o">=</span> <span class="n">calculate_steady_forcing</span><span class="p">(</span>
+    <span class="n">f_steady</span> <span class="o">=</span> <span class="n">compute_steady_forcing</span><span class="p">(</span>
         <span class="n">zeta_b</span><span class="o">=</span><span class="n">zeta_b_n</span><span class="p">,</span>
         <span class="n">zeta_dot_b</span><span class="o">=</span><span class="n">zeta_b_dot_n</span><span class="p">,</span>
         <span class="n">gamma_b</span><span class="o">=</span><span class="n">gamma_b_n</span><span class="p">,</span>
@@ -26279,8 +26281,8 @@ forcing on the bound grid.</p>
     <span class="n">varphi_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">v_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">t_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
-    <span class="n">q_n</span><span class="p">:</span> <span class="n">AeroStates</span><span class="p">,</span>
-    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroStates</span><span class="p">,</span>
+    <span class="n">q_n</span><span class="p">:</span> <span class="n">AeroFullStates</span><span class="p">,</span>
+    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroFullStates</span><span class="p">,</span>
     <span class="n">dv</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
     <span class="n">dv_full</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
     <span class="n">f_aero_beam_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
@@ -26402,7 +26404,7 @@ forcing on the bound grid.</p>
                 <code>q_n</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="AeroStates (flapjax.aero.gradients.data_structures.AeroStates)" href="#flapjax.aero.gradients.data_structures.AeroStates">AeroStates</a></code>
+                  <code><a class="autorefs autorefs-internal" title="AeroFullStates (flapjax.aero.gradients.data_structures.AeroFullStates)" href="#flapjax.aero.gradients.data_structures.AeroFullStates">AeroFullStates</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -26418,7 +26420,7 @@ forcing on the bound grid.</p>
                 <code>q_nm1</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="AeroStates (flapjax.aero.gradients.data_structures.AeroStates)" href="#flapjax.aero.gradients.data_structures.AeroStates">AeroStates</a></code>
+                  <code><a class="autorefs autorefs-internal" title="AeroFullStates (flapjax.aero.gradients.data_structures.AeroFullStates)" href="#flapjax.aero.gradients.data_structures.AeroFullStates">AeroFullStates</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -26650,8 +26652,8 @@ forcing on the bound grid.</p>
     <span class="n">varphi_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">v_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">t_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
-    <span class="n">q_n</span><span class="p">:</span> <span class="n">AeroStates</span><span class="p">,</span>
-    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroStates</span><span class="p">,</span>
+    <span class="n">q_n</span><span class="p">:</span> <span class="n">AeroFullStates</span><span class="p">,</span>
+    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroFullStates</span><span class="p">,</span>
     <span class="n">dv</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
     <span class="n">dv_full</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
     <span class="n">f_aero_beam_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
@@ -27219,8 +27221,8 @@ requested.</p>
     <span class="n">varphi_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">v_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">t_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
-    <span class="n">q_n</span><span class="p">:</span> <span class="n">AeroStates</span><span class="p">,</span>
-    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroStates</span><span class="p">,</span>
+    <span class="n">q_n</span><span class="p">:</span> <span class="n">AeroFullStates</span><span class="p">,</span>
+    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroFullStates</span><span class="p">,</span>
     <span class="n">dv</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
     <span class="n">dv_full</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
     <span class="n">f_aero_beam_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
@@ -27344,7 +27346,7 @@ requested.</p>
                 <code>q_n</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="AeroStates (flapjax.aero.gradients.data_structures.AeroStates)" href="#flapjax.aero.gradients.data_structures.AeroStates">AeroStates</a></code>
+                  <code><a class="autorefs autorefs-internal" title="AeroFullStates (flapjax.aero.gradients.data_structures.AeroFullStates)" href="#flapjax.aero.gradients.data_structures.AeroFullStates">AeroFullStates</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -27360,7 +27362,7 @@ requested.</p>
                 <code>q_nm1</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="AeroStates (flapjax.aero.gradients.data_structures.AeroStates)" href="#flapjax.aero.gradients.data_structures.AeroStates">AeroStates</a></code>
+                  <code><a class="autorefs autorefs-internal" title="AeroFullStates (flapjax.aero.gradients.data_structures.AeroFullStates)" href="#flapjax.aero.gradients.data_structures.AeroFullStates">AeroFullStates</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -27893,8 +27895,8 @@ displacement and velocity, and profiling times for compilation and run time.</p>
     <span class="n">varphi_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">v_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">t_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
-    <span class="n">q_n</span><span class="p">:</span> <span class="n">AeroStates</span><span class="p">,</span>
-    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroStates</span><span class="p">,</span>
+    <span class="n">q_n</span><span class="p">:</span> <span class="n">AeroFullStates</span><span class="p">,</span>
+    <span class="n">q_nm1</span><span class="p">:</span> <span class="n">AeroFullStates</span><span class="p">,</span>
     <span class="n">dv</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
     <span class="n">dv_full</span><span class="p">:</span> <span class="n">AeroelasticDesignVariables</span><span class="p">,</span>
     <span class="n">f_aero_beam_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
