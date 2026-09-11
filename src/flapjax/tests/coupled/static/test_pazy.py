@@ -4,8 +4,8 @@ from jax import numpy as jnp
 
 from flapjax.aero.flowfields import ConstantFlowField
 from flapjax.algebra.so3 import vec_to_skew
-from flapjax.models.pazy.straight.pazy_wing import make_pazy_wing
-from flapjax.models.pazy.swept.swept_pazy_wing import make_swept_pazy_wing
+from flapjax.models.pazy.straight.pazy_wing import generate_pazy_wing
+from flapjax.models.pazy.swept.swept_pazy_wing import generate_swept_pazy_wing
 
 
 def generate_straight_static_aeroelastic(
@@ -17,7 +17,7 @@ def generate_straight_static_aeroelastic(
     rho = 1.225
     u_inf_mag = jnp.sqrt(2 * q_inf / rho)
 
-    wing_ = make_pazy_wing(
+    wing_ = generate_pazy_wing(
         gravity=False,
         node_multiplier=2,
         m=16,
@@ -47,7 +47,7 @@ def generate_swept_static_aeroelastic(
     rho = 1.225
     u_inf_mag = jnp.sqrt(2 * q_inf / rho)
 
-    wing_ = make_swept_pazy_wing(
+    wing_ = generate_swept_pazy_wing(
         gravity=False,
         node_multiplier=2,
         m=16,
@@ -83,7 +83,7 @@ class TestPazy:
         match SHARPy case.
         """
 
-        wing = make_pazy_wing(
+        wing = generate_pazy_wing(
             m=16,
             m_star=160,
             skin=True,
@@ -114,7 +114,7 @@ class TestPazy:
         case.
         """
 
-        wing = make_pazy_wing(
+        wing = generate_pazy_wing(
             m=16,
             m_star=160,
             skin=True,

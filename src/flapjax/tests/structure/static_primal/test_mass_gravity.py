@@ -1,7 +1,7 @@
 from jax import numpy as jnp
 
-from flapjax.structure import BeamStructure
 from flapjax.algebra.se3 import exp_se3
+from flapjax.structure import BeamStructure
 
 
 class TestTwoNodeXGravityZ:

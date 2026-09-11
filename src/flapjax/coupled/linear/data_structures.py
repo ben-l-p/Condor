@@ -4,7 +4,7 @@ from jax import Array
 
 from flapjax.aero.linear.data_structures import AeroLinearResult
 from flapjax.algebra.array_utils import ArrayList
-from flapjax.structure.linear.data_structures import BeamLinearResult
+from flapjax.structure.linear.data_structures import StructureLinearResult
 
 
 @dataclass
@@ -33,4 +33,4 @@ class AeroelasticOutputUnflattened:
 @dataclass
 class AeroelasticLinearResult:
     aero: AeroLinearResult
-    structure: BeamLinearResult
+    structure: StructureLinearResult

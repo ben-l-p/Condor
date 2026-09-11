@@ -43,7 +43,7 @@ class StructureFullStates:
 
 
 @dataclass(frozen=True)
-class StructuralGradsToCompute:
+class StructureGradsToCompute:
     x0: bool = False
     orientation_euler: bool = False
     k_cs: bool = True
@@ -91,7 +91,7 @@ class AApprox:
 
 
 @dataclass
-class BeamJacobianApproximations:
+class StructureJacobianApproximations:
     varphi: VarphiApprox = field(default_factory=VarphiApprox)
     v: VApprox = field(default_factory=VApprox)
     v_dot: VDotApprox = field(default_factory=VDotApprox)
@@ -99,7 +99,7 @@ class BeamJacobianApproximations:
 
 
 @make_pytree
-class StructuralDesignVariables(DesignVariables):
+class StructureDesignVariables(DesignVariables):
     _static: ClassVar[tuple[str, ...]] = ("f_shape", "f_size", "n_x", "shapes")
 
     def __init__(
@@ -135,7 +135,7 @@ class StructuralDesignVariables(DesignVariables):
         ] = self.get_shapes()
         self.mapping, self.n_x = self.make_index_mapping()
 
-    def __iadd__(self, other: StructuralDesignVariables) -> Self:
+    def __iadd__(self, other: StructureDesignVariables) -> Self:
         if self.x0 is not None:
             assert other.x0 is not None
             self.x0 += other.x0
@@ -163,8 +163,8 @@ class StructuralDesignVariables(DesignVariables):
                 self.thrust_t[k] += other.thrust_t[k]
         return self
 
-    def premultiply_adj(self, adj: Array) -> StructuralDesignVariables:
-        return StructuralDesignVariables(
+    def premultiply_adj(self, adj: Array) -> StructureDesignVariables:
+        return StructureDesignVariables(
             x0=jnp.einsum("ij,j...->i...", adj, self.x0)
             if self.x0 is not None
             else None,
@@ -194,8 +194,8 @@ class StructuralDesignVariables(DesignVariables):
             f_shape=(adj.shape[1],),
         )
 
-    def zeros_like(self) -> StructuralDesignVariables:
-        return StructuralDesignVariables(
+    def zeros_like(self) -> StructureDesignVariables:
+        return StructureDesignVariables(
             x0=jnp.zeros_like(self.x0) if self.x0 is not None else None,
             orientation_euler=jnp.zeros_like(self.orientation_euler)
             if self.orientation_euler is not None

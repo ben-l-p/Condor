@@ -6,10 +6,10 @@ from jax import numpy as jnp
 
 from flapjax.structure import (
     BeamStructure,
-    StructuralDesignVariables,
+    StructureDesignVariables,
     StructureFullStates,
 )
-from flapjax.structure.gradients.data_structures import StructuralGradsToCompute
+from flapjax.structure.gradients.data_structures import StructureGradsToCompute
 
 
 class TestBeamTranslationAdjoint:
@@ -77,7 +77,7 @@ class TestBeamTranslationAdjoint:
 
         def objective(
             ss: StructureFullStates,
-            _: StructuralDesignVariables,
+            _: StructureDesignVariables,
             i_ts: int | Array | None,
         ) -> Array:
             return jax.lax.select(
@@ -99,7 +99,7 @@ class TestBeamTranslationAdjoint:
             objective=objective,
             matrix_free=matrix_free,
             p_q0_p_x=None,
-            grads_to_compute=StructuralGradsToCompute(
+            grads_to_compute=StructureGradsToCompute(
                 k_cs=True,
                 m_cs=True,
                 f_ext_follower=True,

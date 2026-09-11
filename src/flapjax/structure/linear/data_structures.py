@@ -8,24 +8,24 @@ from flapjax.structure import StructureCase
 
 
 @dataclass
-class BeamInputUnflattened:
+class StructureInputUnflattened:
     n_tstep: int
     f_ext: Array | None
 
 
 @dataclass
-class BeamStateUnflattened:
+class StructureStateUnflattened:
     q: Array
     q_dot: Array
 
 
 @dataclass
-class BeamOutputUnflattened:
+class StructureOutputUnflattened:
     q: Array
     q_dot: Array
 
 
-class BeamLinearResult:
+class StructureLinearResult:
     def __init__(
         self,
         reference: StructureCase,

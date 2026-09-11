@@ -11,8 +11,8 @@ from flapjax.aero.gradients.data_structures import (
     AeroJacobianApproximations,
 )
 from flapjax.structure.gradients.data_structures import (
-    BeamJacobianApproximations,
-    StructuralGradsToCompute,
+    StructureGradsToCompute,
+    StructureJacobianApproximations,
 )
 from flapjax.utils.print_utils import jax_print, print_table_line
 from flapjax.utils.utils import make_pytree
@@ -20,16 +20,16 @@ from flapjax.utils.utils import make_pytree
 
 @dataclass(frozen=True)
 class AeroelasticGradsToCompute:
-    structure: StructuralGradsToCompute = field(
-        default_factory=StructuralGradsToCompute
+    structure: StructureGradsToCompute = field(
+        default_factory=StructureGradsToCompute
     )
     aero: AeroGradsToCompute = field(default_factory=AeroGradsToCompute)
 
 
 @dataclass
 class AeroelasticJacobianApproximations:
-    structure: BeamJacobianApproximations = field(
-        default_factory=BeamJacobianApproximations
+    structure: StructureJacobianApproximations = field(
+        default_factory=StructureJacobianApproximations
     )
     aero: AeroJacobianApproximations = field(default_factory=AeroJacobianApproximations)
 

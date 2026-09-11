@@ -5,7 +5,7 @@ from jax import numpy as jnp
 
 from flapjax.aero.flowfields import ConstantFlowField, FlowField
 from flapjax.coupled import CoupledAeroelastic
-from flapjax.models.pazy.base import make_generic_pazy_wing
+from flapjax.models.pazy.base import generate_generic_pazy_wing
 from flapjax.models.pazy.straight.data.prepazy_properties import (
     PREPAZY_NO_SKIN,
     PREPAZY_WITH_SKIN,
@@ -21,7 +21,7 @@ FLOWFIELD_DEFAULT = ConstantFlowField(
 AOA_DEFAULT = jnp.deg2rad(3.0)
 
 
-def make_pazy_wing(
+def generate_pazy_wing(
     m: int = 12,
     m_star: int = 120,
     skin: bool = True,
@@ -63,7 +63,7 @@ def make_pazy_wing(
         case _:
             raise ValueError("Invalid model")
 
-    return make_generic_pazy_wing(
+    return generate_generic_pazy_wing(
         m=m,
         m_star=m_star,
         node_multiplier=node_multiplier,
@@ -86,7 +86,7 @@ if __name__ == "__main__":
     aoa_ = jnp.deg2rad(7.0)
     u_inf_mag = 60.0
 
-    wing_ = make_pazy_wing(
+    wing_ = generate_pazy_wing(
         gravity=True,
         node_multiplier=2,
         m=16,

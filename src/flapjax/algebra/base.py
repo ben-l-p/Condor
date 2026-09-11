@@ -19,7 +19,9 @@ ADMode = Literal["reverse", "forward"]
 
 if TYPE_CHECKING:
     from flapjax.aero.gradients.data_structures import AeroJacobianApproximations
-    from flapjax.structure.gradients.data_structures import BeamJacobianApproximations
+    from flapjax.structure.gradients.data_structures import (
+        StructureJacobianApproximations,
+    )
 
 
 def matrix2(mat: Array) -> Array:
@@ -713,7 +715,7 @@ def jacobian_approximation(
 
 def construct_approximation(
     res_args: dict[str, tuple[Callable[..., Any], dict, Sequence[str]]],
-    jacobian_approximations: AeroJacobianApproximations | BeamJacobianApproximations,
+    jacobian_approximations: AeroJacobianApproximations | StructureJacobianApproximations,
 ) -> dict[str, dict[str, Callable[..., Any] | None]]:
     jacobian_options: dict[str, dict[str, Callable[..., Any] | None]] = {}
     for res_name, (func, args, diff_arg_names) in res_args.items():

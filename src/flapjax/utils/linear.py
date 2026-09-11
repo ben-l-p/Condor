@@ -36,24 +36,24 @@ if TYPE_CHECKING:
     )
     from flapjax.structure import StructureCase
     from flapjax.structure.linear.data_structures import (
-        BeamInputUnflattened,
-        BeamLinearResult,
-        BeamOutputUnflattened,
-        BeamStateUnflattened,
+        StructureInputUnflattened,
+        StructureLinearResult,
+        StructureOutputUnflattened,
+        StructureStateUnflattened,
     )
 
 type InputUnflattened = (
-    AeroInputUnflattened | BeamInputUnflattened | AeroelasticInputUnflattened
+    AeroInputUnflattened | StructureInputUnflattened | AeroelasticInputUnflattened
 )
 type StateUnflattened = (
-    AeroStateUnflattened | BeamStateUnflattened | AeroelasticStateUnflattened
+    AeroStateUnflattened | StructureStateUnflattened | AeroelasticStateUnflattened
 )
 type OutputUnflattened = (
-    AeroOutputUnflattened | BeamOutputUnflattened | AeroelasticOutputUnflattened
+    AeroOutputUnflattened | StructureOutputUnflattened | AeroelasticOutputUnflattened
 )
 type ReferenceObject = StructureCase | AeroCase | AeroelasticCase
 
-type LinearResult = AeroLinearResult | BeamLinearResult | AeroelasticLinearResult
+type LinearResult = AeroLinearResult | StructureLinearResult | AeroelasticLinearResult
 
 
 @dataclass

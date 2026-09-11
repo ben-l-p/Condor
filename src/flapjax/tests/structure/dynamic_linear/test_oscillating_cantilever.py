@@ -3,7 +3,7 @@ from jax import vmap
 
 from flapjax.algebra.se3 import log_se3
 from flapjax.structure import BeamStructure
-from flapjax.structure.linear.data_structures import BeamInputUnflattened
+from flapjax.structure.linear.data_structures import StructureInputUnflattened
 from flapjax.structure.utils import transform_nodal_vect
 
 
@@ -80,7 +80,7 @@ class TestOscillatingCantileverDead:
 
         # linear input is a single global-frame external force; convert local (follower) force to global
         f_ext = f_beam if cls.is_dead else cls._to_global(f_beam, ref.hg[:, :3, :3])
-        u_beam = BeamInputUnflattened(n_tstep=cls.n_tstep, f_ext=f_ext)
+        u_beam = StructureInputUnflattened(n_tstep=cls.n_tstep, f_ext=f_ext)
 
         lin_sol = linear_beam.run(u=u_beam)
 
@@ -137,7 +137,7 @@ class TestOscillatingCantileverDead:
             if cls.is_dead
             else cls._to_global(f_ext_perturb, ref.hg[:, :3, :3])
         )
-        u_beam = BeamInputUnflattened(n_tstep=cls.n_tstep, f_ext=f_ext)
+        u_beam = StructureInputUnflattened(n_tstep=cls.n_tstep, f_ext=f_ext)
 
         lin_sol = linear_beam.run(u=u_beam)
 

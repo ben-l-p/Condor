@@ -12,7 +12,7 @@ from jax import Array, vmap
 from flapjax.aero.aic import compute_v_ind
 from flapjax.aero.data_structures import AeroCase
 from flapjax.aero.flowfields import FlowField
-from flapjax.aero.gradients.data_structures import AeroStates
+from flapjax.aero.gradients.data_structures import AeroFullStates
 from flapjax.aero.linear.data_structures import (
     AeroInputUnflattened,
     AeroLinearResult,
@@ -22,8 +22,8 @@ from flapjax.aero.linear.data_structures import (
 from flapjax.aero.utils import (
     KernelFunction,
     biot_savart_cutoff,
-    calculate_steady_forcing,
     compute_nc,
+    compute_steady_forcing,
 )
 from flapjax.algebra.array_utils import (
     ArrayList,
@@ -350,7 +350,7 @@ class LinearUVLM(
             zeta_b_n = ref.zeta_b
             zeta_w_n = ref.zeta_w
 
-        q_n = AeroStates(
+        q_n = AeroFullStates(
             gamma_b=gamma_b_n,
             gamma_w=gamma_w_n,
             gamma_b_dot=ref.gamma_b_dot,
@@ -395,7 +395,7 @@ class LinearUVLM(
                 mirror_point=self.case.mirror_point,
             )
 
-        f_steady_n = calculate_steady_forcing(
+        f_steady_n = compute_steady_forcing(
             zeta_b=zeta_b_np1,
             zeta_dot_b=zeta_dot_b_np1,
             gamma_b=gamma_b_n,

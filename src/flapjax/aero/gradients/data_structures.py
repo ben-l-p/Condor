@@ -111,7 +111,7 @@ class AeroJacobianApproximations:
 
 
 @make_pytree
-class AeroStates:
+class AeroFullStates:
     r"""
     Aerodynamic states used for the adjoint solve.
     """
@@ -152,15 +152,15 @@ class AeroStates:
     def from_vector(
         vect: Array,
         shapes: OrderedDict[str, tuple[int, ...] | ArrayListShape | None],
-    ) -> AeroStates:
+    ) -> AeroFullStates:
         r"""
-        Construct an AeroStates object from a vector of data and a corresponding dictionary of shapes, being the inverse
+        Construct an AeroFullStates object from a vector of data and a corresponding dictionary of shapes, being the inverse
         of ``self.ravel()``.
         :param vect: Aerodynamic state vector.
         :param shapes: Dictionary of {name: shape} pairs of all arrays or ArrayLists within the data structure.
-        :return: AeroStates object.
+        :return: AeroFullStates object.
         """
-        return AeroStates(**vect_to_arrs(vect, shapes))
+        return AeroFullStates(**vect_to_arrs(vect, shapes))
 
     def ravel(self) -> Array:
         r"""

@@ -5,7 +5,7 @@ from jax import numpy as jnp
 
 from flapjax.aero.flowfields import ConstantFlowField, FlowField
 from flapjax.coupled import CoupledAeroelastic
-from flapjax.models.pazy.base import make_generic_pazy_wing
+from flapjax.models.pazy.base import generate_generic_pazy_wing
 
 # constant from provided data
 from flapjax.models.pazy.swept.data.properties_10_deg import (
@@ -24,7 +24,7 @@ DEFAULT_FLOWFIELD: FlowField = ConstantFlowField(
 DEFAULT_AOA: Array = jnp.deg2rad(3.0)
 
 
-def make_swept_pazy_wing(
+def generate_swept_pazy_wing(
     m: int = 12,
     m_star: int = 120,
     sweep_angle: Literal[10, 20] = 10,
@@ -67,7 +67,7 @@ def make_swept_pazy_wing(
     if y_vector_override is None and sweep_angle == 20:
         y_vector_override = jnp.array((0.0, 0.0, 1.0))
 
-    return make_generic_pazy_wing(
+    return generate_generic_pazy_wing(
         m=m,
         m_star=m_star,
         node_multiplier=node_multiplier,

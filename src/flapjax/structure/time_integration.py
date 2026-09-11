@@ -43,7 +43,7 @@ class TimeIntegrator:
             self.beta * dt * dt * (1.0 - self.alpha_f)
         )
 
-    def calculate_a_n(self, v_dot_nm1: Array, v_dot_n: Array, a_nm1: Array) -> Array:
+    def compute_a_n(self, v_dot_nm1: Array, v_dot_n: Array, a_nm1: Array) -> Array:
         r"""
         Calculate the pseudo-acceleration at the next time step.
         :param v_dot_nm1: Previous acceleration, ``(n_nodes, 6)``.
@@ -61,7 +61,7 @@ class TimeIntegrator:
             )
         )
 
-    def calculate_q_n_from_q_alpha(
+    def compute_q_n_from_q_alpha(
         self,
         q_nm1: StructureMinimalStates,
         q_alpha: StructureMinimalStates,
@@ -112,41 +112,41 @@ class TimeIntegrator:
             varphi=varphi_n, v=v_n, v_dot=v_dot_n, a=a_n
         )
 
-    def calculate_f_alpha(self, f_nm1: Array, f_n: Array) -> Array:
+    def compute_f_alpha(self, f_nm1: Array, f_n: Array) -> Array:
         return (1.0 - self.alpha_f) * f_n + self.alpha_f * f_nm1
 
-    def calculate_phi_alpha(self, phi_n: Array) -> Array:
+    def compute_phi_alpha(self, phi_n: Array) -> Array:
         return (1.0 - self.alpha_f) * phi_n
 
-    def calculate_v_alpha(self, v_nm1: Array, v_n: Array) -> Array:
+    def compute_v_alpha(self, v_nm1: Array, v_n: Array) -> Array:
         return (1.0 - self.alpha_f) * v_n + self.alpha_f * v_nm1
 
-    def calculate_v_dot_alpha(self, v_dot_nm1: Array, v_dot_n: Array) -> Array:
+    def compute_v_dot_alpha(self, v_dot_nm1: Array, v_dot_n: Array) -> Array:
         return (1.0 - self.alpha_f) * v_dot_n + self.alpha_f * v_dot_nm1
 
-    def calculate_a_alpha(self, a_nm1: Array, a_n: Array) -> Array:
+    def compute_a_alpha(self, a_nm1: Array, a_n: Array) -> Array:
         return (1.0 - self.alpha_m) * a_n + self.alpha_m * a_nm1
 
-    def calculate_varphi_alpha(self, varphi_nm1: Array, varphi_n: Array) -> Array:
+    def compute_varphi_alpha(self, varphi_nm1: Array, varphi_n: Array) -> Array:
         phi_n = vmap(lambda a, b: hg_to_d(exp_se3(a), exp_se3(b)))(varphi_nm1, varphi_n)
 
-        phi_alpha = self.calculate_phi_alpha(phi_n)
+        phi_alpha = self.compute_phi_alpha(phi_n)
         return vmap(
             lambda varphi_, phi_: log_se3(exp_se3(varphi_) @ exp_se3(phi_)), (0, 0), 0
         )(varphi_nm1, phi_alpha)
 
-    def calculate_q_alpha(
+    def compute_q_alpha(
         self, q_nm1: StructureMinimalStates, q_n: StructureMinimalStates, phi_n: Array
     ) -> tuple[Array, StructureMinimalStates]:
-        phi_alpha = self.calculate_phi_alpha(phi_n)
-        varphi_alpha = self.calculate_varphi_alpha(
+        phi_alpha = self.compute_phi_alpha(phi_n)
+        varphi_alpha = self.compute_varphi_alpha(
             varphi_nm1=q_nm1.varphi, varphi_n=q_n.varphi
         )
-        v_alpha = self.calculate_v_alpha(v_nm1=q_nm1.v, v_n=q_n.v)
-        v_dot_alpha = self.calculate_v_dot_alpha(
+        v_alpha = self.compute_v_alpha(v_nm1=q_nm1.v, v_n=q_n.v)
+        v_dot_alpha = self.compute_v_dot_alpha(
             v_dot_nm1=q_nm1.v_dot, v_dot_n=q_n.v_dot
         )
-        a_alpha = self.calculate_a_alpha(a_nm1=q_nm1.a, a_n=q_n.a)
+        a_alpha = self.compute_a_alpha(a_nm1=q_nm1.a, a_n=q_n.a)
         return phi_alpha, StructureMinimalStates(
             varphi=varphi_alpha,
             v=v_alpha,
@@ -154,7 +154,7 @@ class TimeIntegrator:
             a=a_alpha,
         )
 
-    def calculate_phi_from_phi_alpha(self, phi_alpha: Array) -> Array:
+    def compute_phi_from_phi_alpha(self, phi_alpha: Array) -> Array:
         r"""
         Obtain the full timestep increment from the alpha increment.
         :param phi_alpha: Increment from timestep n-1 to alpha, ``(n_nodes, 6)``.
@@ -162,7 +162,7 @@ class TimeIntegrator:
         """
         return phi_alpha / (1.0 - self.alpha_f)
 
-    def calculate_v_from_v_alpha(self, v_alpha: Array, v_nm1: Array) -> Array:
+    def compute_v_from_v_alpha(self, v_alpha: Array, v_nm1: Array) -> Array:
         r"""
         Obtain the full timestep velocity from the alpha increment and the previous velocity.
         :param v_alpha: Velocity at alpha step, ``(n_nodes, 6)``.

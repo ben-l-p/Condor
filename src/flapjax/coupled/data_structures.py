@@ -12,11 +12,11 @@ from jax import Array
 from jax import numpy as jnp
 
 from flapjax.aero.data_structures import AeroCase
-from flapjax.aero.gradients.data_structures import AeroDesignVariables, AeroStates
+from flapjax.aero.gradients.data_structures import AeroDesignVariables, AeroFullStates
 from flapjax.algebra.array_utils import ArrayList, ArrayListShape
 from flapjax.coupled.gradients.data_structures import AeroelasticGradsToCompute
 from flapjax.structure.data_structures import StructureCase, StructureMinimalStates
-from flapjax.structure.gradients.data_structures import StructuralDesignVariables
+from flapjax.structure.gradients.data_structures import StructureDesignVariables
 from flapjax.utils.data_structures import DesignVariables
 from flapjax.utils.utils import make_pytree
 
@@ -222,7 +222,7 @@ class AeroelasticCase:
 class AeroelasticFullStates:
     _static: ClassVar[tuple[str, ...]] = ()
 
-    aero: AeroStates
+    aero: AeroFullStates
     structure: StructureFullStates
 
 
@@ -230,9 +230,9 @@ class AeroelasticFullStates:
 class AeroelasticMinimalStates:
     _static: ClassVar[tuple[str, ...]] = ()
 
-    def __init__(self, structure: StructureMinimalStates, aero: AeroStates):
+    def __init__(self, structure: StructureMinimalStates, aero: AeroFullStates):
         self.structure: StructureMinimalStates = structure
-        self.aero: AeroStates = aero
+        self.aero: AeroFullStates = aero
 
     @staticmethod
     def from_vector(
@@ -241,7 +241,7 @@ class AeroelasticMinimalStates:
         aero_shapes: OrderedDict[str, tuple[int, ...] | ArrayListShape | None],
     ) -> AeroelasticMinimalStates:
         struct = StructureMinimalStates.from_mat(vect[: 5 * n_dof].reshape(5, n_dof))
-        aero = AeroStates.from_vector(vect[5 * n_dof :], aero_shapes)
+        aero = AeroFullStates.from_vector(vect[5 * n_dof :], aero_shapes)
         return AeroelasticMinimalStates(structure=struct, aero=aero)
 
     def ravel(self) -> Array:
@@ -267,11 +267,11 @@ class AeroelasticDesignVariables(DesignVariables):
 
     def __init__(
         self,
-        structure_dv: StructuralDesignVariables,
+        structure_dv: StructureDesignVariables,
         aero_dv: AeroDesignVariables,
     ):
         super().__init__()
-        self.structure: StructuralDesignVariables = structure_dv
+        self.structure: StructureDesignVariables = structure_dv
         self.aero: AeroDesignVariables = aero_dv
 
         self.shapes: OrderedDict[
@@ -292,7 +292,7 @@ class AeroelasticDesignVariables(DesignVariables):
     def split_adjoint(
         self, d_f_d_x: dict[str, Array | ArrayList | None], f_shape: tuple[int, ...]
     ) -> AeroelasticDesignVariables:
-        struct_dv = StructuralDesignVariables(
+        struct_dv = StructureDesignVariables(
             **{k: v for k, v in d_f_d_x.items() if k in self.structure.to_dict()},
             f_shape=f_shape,
         )
@@ -314,7 +314,7 @@ class AeroelasticDesignVariables(DesignVariables):
         return self
 
     def add_structure_dv(
-        self, other: StructuralDesignVariables
+        self, other: StructureDesignVariables
     ) -> AeroelasticDesignVariables:
         structure_dv = deepcopy(self.structure)
         structure_dv += other
@@ -331,7 +331,7 @@ class AeroelasticDesignVariables(DesignVariables):
         j_shape: tuple[int, ...],
     ) -> AeroelasticDesignVariables:
         return AeroelasticDesignVariables(
-            structure_dv=StructuralDesignVariables(
+            structure_dv=StructureDesignVariables(
                 x0=jnp.zeros((*j_shape, *system.structure.x0.shape))
                 if grads_to_compute is None or grads_to_compute.structure.x0
                 else None,
@@ -403,7 +403,7 @@ class AeroelasticDesignVariables(DesignVariables):
         cls, *dvs: AeroelasticDesignVariables
     ) -> AeroelasticDesignVariables:
         aero_dvs = AeroDesignVariables.concatenate(*[dv.aero for dv in dvs])
-        structure_dv = StructuralDesignVariables.concatenate(
+        structure_dv = StructureDesignVariables.concatenate(
             *[dv.structure for dv in dvs]
         )
         return AeroelasticDesignVariables(aero_dv=aero_dvs, structure_dv=structure_dv)

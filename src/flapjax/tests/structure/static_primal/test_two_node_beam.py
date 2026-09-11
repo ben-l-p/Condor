@@ -1,9 +1,9 @@
 from jax import numpy as jnp
 
-from flapjax.structure import BeamStructure
 from flapjax.algebra.base import chi
-from flapjax.algebra.test_routines import const_curvature_beam
 from flapjax.algebra.se3 import p
+from flapjax.algebra.test_routines import const_curvature_beam
+from flapjax.structure import BeamStructure
 
 
 class TestTwoNodeXBeamStrainsForces:

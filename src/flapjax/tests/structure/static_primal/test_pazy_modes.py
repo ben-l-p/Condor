@@ -5,8 +5,8 @@ from jax import Array
 from jax import numpy as jnp
 
 from flapjax.aero.flowfields import ConstantFlowField
-from flapjax.models.pazy.straight.pazy_wing import make_pazy_wing
-from flapjax.models.pazy.swept.swept_pazy_wing import make_swept_pazy_wing
+from flapjax.models.pazy.straight.pazy_wing import generate_pazy_wing
+from flapjax.models.pazy.swept.swept_pazy_wing import generate_swept_pazy_wing
 
 
 def _swept_modes(
@@ -16,7 +16,7 @@ def _swept_modes(
     lumped_mass: bool = False,
     node_multiplier: int = 2,
 ) -> Array:
-    wing = make_swept_pazy_wing(
+    wing = generate_swept_pazy_wing(
         flowfield=ConstantFlowField(
             u_inf=jnp.array([0.0, 0.0, 0.0]),
             rho=1.225,
@@ -98,7 +98,7 @@ class TestPazyModal:
         modes presented in "Collaborative Pazy Wing Analyses for the Third Aeroelastic Prediction Workshop".
         """
 
-        wing = make_pazy_wing(
+        wing = generate_pazy_wing(
             flowfield=ConstantFlowField(
                 u_inf=jnp.array([0.0, 0.0, 0.0]),
                 rho=1.225,

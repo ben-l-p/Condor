@@ -62,15 +62,14 @@ def verbosity(level: VerbosityLevel):
         set_verbosity(old)
 
 
-def make_color(text: str, color: Colour) -> str:
-    # info on colouring from https://vascosim.medium.com/how-to-print-colored-text-in-python-52f6244e2e30
-    return f"\033[{color.value}m{text}\033[0m"
+def make_colour(text: str, colour: Colour) -> str:
+    return f"\033[{colour.value}m{text}\033[0m"
 
 
 def warn(message: str, **kwargs) -> None:
     if map_verbosity_level(VERBOSITY_LEVEL) >= map_verbosity_level("warning"):
         jax_print(
-            make_color(f"Warning: {message}", color=Colour.YELLOW),
+            make_colour(f"Warning: {message}", colour=Colour.YELLOW),
             verbose_level="warning",
             **kwargs,
         )

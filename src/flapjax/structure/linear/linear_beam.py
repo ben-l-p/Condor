@@ -10,10 +10,10 @@ from flapjax.algebra.array_utils import check_arr_shape
 from flapjax.algebra.se3 import exp_se3
 from flapjax.structure.data_structures import StructureCase
 from flapjax.structure.linear.data_structures import (
-    BeamInputUnflattened,
-    BeamLinearResult,
-    BeamOutputUnflattened,
-    BeamStateUnflattened,
+    StructureInputUnflattened,
+    StructureLinearResult,
+    StructureOutputUnflattened,
+    StructureStateUnflattened,
 )
 from flapjax.structure.utils import transform_nodal_vect
 from flapjax.utils.constants import BASE_LOBATTO_ORDER
@@ -26,10 +26,10 @@ if TYPE_CHECKING:
 class LinearBeam(
     LinearModel[
         StructureCase,
-        BeamInputUnflattened,
-        BeamStateUnflattened,
-        BeamOutputUnflattened,
-        BeamLinearResult,
+        StructureInputUnflattened,
+        StructureStateUnflattened,
+        StructureOutputUnflattened,
+        StructureLinearResult,
     ]
 ):
     r"""
@@ -167,20 +167,20 @@ class LinearBeam(
         }
 
     @property
-    def input_object(self) -> type[BeamInputUnflattened]:
-        return BeamInputUnflattened
+    def input_object(self) -> type[StructureInputUnflattened]:
+        return StructureInputUnflattened
 
     @property
     def state_object(
         self,
-    ) -> type[BeamStateUnflattened]:
-        return BeamStateUnflattened
+    ) -> type[StructureStateUnflattened]:
+        return StructureStateUnflattened
 
     @property
     def output_object(
         self,
-    ) -> type[BeamOutputUnflattened]:
-        return BeamOutputUnflattened
+    ) -> type[StructureOutputUnflattened]:
+        return StructureOutputUnflattened
 
     def _make_input_slices(
         self,
@@ -330,9 +330,9 @@ class LinearBeam(
     # noinspection PyMethodOverriding
     def run(
         self,
-        u: BeamInputUnflattened,
-        x0: BeamStateUnflattened | None = None,
-    ) -> BeamLinearResult:
+        u: StructureInputUnflattened,
+        x0: StructureStateUnflattened | None = None,
+    ) -> StructureLinearResult:
         r"""
         Run the linear system.
         :param u: Total input over time (reference + pertubation).
@@ -419,7 +419,7 @@ class LinearBeam(
                     u.f_ext if ref_f_ext is None else u.f_ext - ref_f_ext[None, :, :]
                 )
 
-        delta_u = BeamInputUnflattened(n_tstep=n_tstep, f_ext=delta_f_ext_t)
+        delta_u = StructureInputUnflattened(n_tstep=n_tstep, f_ext=delta_f_ext_t)
         delta_u_vec = self._pack_input_vector_t(delta_u)
 
         # run linear system
@@ -459,7 +459,7 @@ class LinearBeam(
 
             hg_t = jnp.einsum("ijk,hikl->hijl", self.reference.hg, delta_hg_t)
 
-        return BeamLinearResult(
+        return StructureLinearResult(
             reference=self.reference,
             f_ext=u.f_ext,
             delta_q=delta_q_t,

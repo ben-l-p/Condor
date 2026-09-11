@@ -14,7 +14,7 @@ from flapjax.coupled.data_structures import (
 )
 from flapjax.coupled.gradients.data_structures import AeroelasticGradsToCompute
 from flapjax.models.patil_wing.patil_wing import generate_patil_wing
-from flapjax.structure.gradients.data_structures import StructuralGradsToCompute
+from flapjax.structure.gradients.data_structures import StructureGradsToCompute
 from flapjax.utils.data_structures import ConvergenceSettings
 
 if __name__ == "__main__":
@@ -184,7 +184,7 @@ if __name__ == "__main__":
             objective=objective,
             save_adjoint=False,
             grads_to_compute=AeroelasticGradsToCompute(
-                structure=StructuralGradsToCompute(k_cs=False, m_cs=False),
+                structure=StructureGradsToCompute(k_cs=False, m_cs=False),
                 aero=AeroGradsToCompute(x0_aero=False, cs_ang_t=True, cs_vel_t=True),
             ),
         )

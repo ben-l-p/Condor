@@ -30,8 +30,8 @@ from flapjax.structure.data_structures import (
     StructureMinimalStates,
 )
 from flapjax.structure.gradients.data_structures import (
-    StructuralDesignVariables,
-    StructuralGradsToCompute,
+    StructureDesignVariables,
+    StructureGradsToCompute,
 )
 from flapjax.structure.linear.linear_beam import LinearBeam
 from flapjax.structure.time_integration import TimeIntegrator
@@ -500,8 +500,8 @@ class BaseBeamStructure:
         self,
         struct_case: StructureCase,
         thrust_t: dict[str, Array],
-        grads_to_compute: StructuralGradsToCompute | None,
-    ) -> StructuralDesignVariables:
+        grads_to_compute: StructureGradsToCompute | None,
+    ) -> StructureDesignVariables:
         r"""
         Obtain the design variables for the structural problem. As the external forcing is defined for each solve, the
         chosen forcing is required as input.
@@ -509,7 +509,7 @@ class BaseBeamStructure:
         :param thrust_t: Thrust time history, {keys, ``(n_tstep,)``}.
         :param grads_to_compute: Data structure which describes which design variables should be obtained. If none, all
         variables are obtained.
-        :return: StructuralDesignVariables dataclass containing design variables
+        :return: StructureDesignVariables dataclass containing design variables
         """
 
         # struct_case.f_ext_dead is stored in local frame: f_local = R^T @ f_global,
@@ -524,8 +524,8 @@ class BaseBeamStructure:
             if struct_case.f_ext_dead is not None
             else None
         )
-        if isinstance(grads_to_compute, StructuralGradsToCompute):
-            return StructuralDesignVariables(
+        if isinstance(grads_to_compute, StructureGradsToCompute):
+            return StructureDesignVariables(
                 x0=self.x0 if grads_to_compute.x0 else None,
                 orientation_euler=self.orientation_euler
                 if grads_to_compute.orientation_euler
@@ -541,7 +541,7 @@ class BaseBeamStructure:
                 f_shape=(),
             )
         else:
-            return StructuralDesignVariables(
+            return StructureDesignVariables(
                 x0=self.x0,
                 orientation_euler=self.orientation_euler,
                 m_cs=self.m_cs,
@@ -612,7 +612,7 @@ class BaseBeamStructure:
         else:
             return jnp.zeros((0, 12), dtype=int)
 
-    def calculate_varphi_from_hg(self, hg: Array) -> Array:
+    def compute_varphi_from_hg(self, hg: Array) -> Array:
         r"""
         Calculate the twist vector from the reference configuration to hg
         :param hg: Deformed coordinates, ``(n_nodes, 4, 4)``
@@ -620,7 +620,7 @@ class BaseBeamStructure:
         """
         return vmap(hg_to_d, (0, 0), 0)(self.hg0, hg)
 
-    def calculate_hg_from_varphi(self, varphi: Array) -> Array:
+    def compute_hg_from_varphi(self, varphi: Array) -> Array:
         exp_varphi = vmap(exp_se3)(varphi)  # [n_nodes, 4, 4]
         return jnp.einsum("ijk,ikl->ijl", self.hg0, exp_varphi)
 
@@ -706,7 +706,7 @@ class BaseBeamStructure:
                     jnp.zeros((f.shape[0], self.n_nodes, 6))
                     .at[1:, ...]
                     .set(
-                        self.time_integrator.calculate_f_alpha(
+                        self.time_integrator.compute_f_alpha(
                             f_nm1=f[:-1, ...], f_n=f[1:, ...]
                         )
                     )
@@ -1390,7 +1390,7 @@ class BaseBeamStructure:
                 )
         return mat
 
-    def calculate_centre_of_mass(self, hg: Array) -> Array:
+    def compute_centre_of_mass(self, hg: Array) -> Array:
         r"""
         Compute the centre of mass for an arbitrary system.
         :param hg: Node SE(3) coordinates, ``(n_node, 4, 4)`` or ``(n_tstep, n_node, 4, 4)``.
@@ -2234,7 +2234,7 @@ class BaseBeamStructure:
                 v_dot=None,
             )
         )
-        varphi = self.calculate_varphi_from_hg(hg)
+        varphi = self.compute_varphi_from_hg(hg)
         f_elem = self.make_f_elem(eps=eps)  # compute loads in each element
 
         return StructureCase(
@@ -2568,7 +2568,7 @@ class BaseBeamStructure:
             phi_init, q_init = self.time_integrator.predict_q(
                 struct_sol.get_minimal_states(i_ts - 1)
             )
-            phi_alpha_init, q_alpha_init = self.time_integrator.calculate_q_alpha(
+            phi_alpha_init, q_alpha_init = self.time_integrator.compute_q_alpha(
                 q_nm1=struct_sol.get_minimal_states(i_ts - 1),
                 q_n=q_init,
                 phi_n=phi_init,
@@ -2578,7 +2578,7 @@ class BaseBeamStructure:
 
             # thrust force
             thrust_alpha: dict[str, Array] = {
-                k: self.time_integrator.calculate_f_alpha(
+                k: self.time_integrator.compute_f_alpha(
                     f_nm1=v[i_ts - 1], f_n=v[i_ts]
                 )
                 for k, v in thrust_t_.items()
@@ -2673,14 +2673,14 @@ class BaseBeamStructure:
                     )
 
             # postprocess results for time step and store in solution object
-            q_n, phi_n = self.time_integrator.calculate_q_n_from_q_alpha(
+            q_n, phi_n = self.time_integrator.compute_q_n_from_q_alpha(
                 q_alpha=q_alpha,
                 q_nm1=struct_sol.get_minimal_states(i_ts - 1),
                 phi_alpha=phi_alpha,
             )
 
             # update pseudo-acceleration
-            q_n.a = self.time_integrator.calculate_a_n(
+            q_n.a = self.time_integrator.compute_a_n(
                 a_nm1=struct_sol.a[i_ts - 1, ...],
                 v_dot_nm1=struct_sol.v_dot[i_ts - 1, ...],
                 v_dot_n=q_n.v_dot,
@@ -2817,10 +2817,10 @@ class BaseBeamStructure:
             dict[str, Array],
         ]:
             # obtain coordinates at timestep (not alpha)
-            phi_n = self.time_integrator.calculate_phi_from_phi_alpha(
+            phi_n = self.time_integrator.compute_phi_from_phi_alpha(
                 phi_alpha=phi_alpha_init
             )
-            v_n = self.time_integrator.calculate_v_from_v_alpha(
+            v_n = self.time_integrator.compute_v_from_v_alpha(
                 v_alpha=q_alpha_init.v, v_nm1=struct_sol.v[i_ts - 1, ...]
             )
 
@@ -2852,7 +2852,7 @@ class BaseBeamStructure:
             )
 
             # aerodynamic force at alpha point, subsequently divided into load steps
-            f_aero_alpha = self.time_integrator.calculate_f_alpha(
+            f_aero_alpha = self.time_integrator.compute_f_alpha(
                 f_nm1=f_aero_nm1, f_n=f_aero_n
             )
 

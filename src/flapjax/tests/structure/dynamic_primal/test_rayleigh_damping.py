@@ -1,7 +1,7 @@
 from jax import numpy as jnp
 
 from flapjax.structure import BeamStructure
-from flapjax.structure.linear.data_structures import BeamInputUnflattened
+from flapjax.structure.linear.data_structures import StructureInputUnflattened
 
 
 class CantileverBase:
@@ -104,7 +104,7 @@ class TestRayleighDamping:
             n_tstep=n_tstep,
             dt=dt,
         )
-        lin_sol = linear_beam.run(u=BeamInputUnflattened(n_tstep=n_tstep, f_ext=f_beam))
+        lin_sol = linear_beam.run(u=StructureInputUnflattened(n_tstep=n_tstep, f_ext=f_beam))
 
         nl_tip_z = nl_sol.x[:, -1, 2]
         lin_tip_z = lin_sol.x[:, -1, 2]

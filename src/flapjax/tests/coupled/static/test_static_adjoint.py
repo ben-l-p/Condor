@@ -10,7 +10,7 @@ from flapjax.coupled.data_structures import (
 )
 from flapjax.coupled.gradients.data_structures import AeroelasticGradsToCompute
 from flapjax.models import cantilever_wing
-from flapjax.structure.gradients.data_structures import StructuralGradsToCompute
+from flapjax.structure.gradients.data_structures import StructureGradsToCompute
 from flapjax.utils.data_structures import ConvergenceSettings
 
 # Small discretisation so tests run quickly
@@ -55,7 +55,7 @@ class TestForwardStaticAeroelasticAdjoint:
     ad_mode: Literal["forward", "reverse"] = "forward"
 
     grads_to_compute: AeroelasticGradsToCompute = AeroelasticGradsToCompute(
-        structure=StructuralGradsToCompute(k_cs=True),
+        structure=StructureGradsToCompute(k_cs=True),
         aero=AeroGradsToCompute(flowfield=True),
     )
 

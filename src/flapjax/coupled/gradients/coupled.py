@@ -11,8 +11,8 @@ from jax import numpy as jnp
 
 from flapjax.aero.gradients.data_structures import (
     AeroDesignVariables,
+    AeroFullStates,
     AeroGradsToCompute,
-    AeroStates,
 )
 from flapjax.aero.utils import project_forcing_to_beam
 from flapjax.algebra.array_utils import ArrayList
@@ -35,11 +35,11 @@ from flapjax.coupled.gradients.utils import (
     group_key,
     parse_groups,
 )
-from flapjax.structure import StructuralDesignVariables
+from flapjax.structure import StructureDesignVariables
 from flapjax.structure.data_structures import OptionalJacobians, StructureMinimalStates
 from flapjax.structure.gradients.data_structures import (
-    StructuralGradsToCompute,
     StructureFullStates,
+    StructureGradsToCompute,
 )
 from flapjax.structure.utils import get_solve_dofs, transform_nodal_vect
 from flapjax.utils.print_utils import (
@@ -266,7 +266,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
 
         p_j_p_varphi_flat = p_j_p_varphi_raw.reshape(n_f, -1)  # (n_f, n_dof)
         p_j_p_x_flat = AeroelasticDesignVariables(
-            structure_dv=StructuralDesignVariables(
+            structure_dv=StructureDesignVariables(
                 **{
                     k: getattr(p_j_p_x_raw.structure, k) for k in dv.structure.to_dict()
                 },
@@ -334,7 +334,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
             (adj_p_res_p_x_raw,) = jax.vmap(vjp_res_dv)(adj_full)
 
             adj_p_res_p_x_flat = AeroelasticDesignVariables(
-                structure_dv=StructuralDesignVariables(
+                structure_dv=StructureDesignVariables(
                     **{
                         k: getattr(adj_p_res_p_x_raw.structure, k)
                         for k in dv.structure.to_dict()
@@ -399,7 +399,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
             )
 
             # solve aero problem
-            hg = inner_case.structure.calculate_hg_from_varphi(varphi=varphi_)
+            hg = inner_case.structure.compute_hg_from_varphi(varphi=varphi_)
             _, _, gamma_b, gamma_w, _, _, zeta_w, _, f_steady, _, _ = (
                 inner_case.aero.base_solve(
                     q_nm1=None,
@@ -440,7 +440,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
                 vect=f_aero_beam_global, rmat=jnp.transpose(hg[:, :3, :3], (0, 2, 1))
             )
 
-            q_aero = AeroStates(
+            q_aero = AeroFullStates(
                 gamma_b=gamma_b,
                 gamma_w=gamma_w,
                 zeta_w=zeta_w,
@@ -512,7 +512,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
 
         # direct term
         adj_dv = AeroelasticDesignVariables(
-            structure_dv=StructuralDesignVariables(
+            structure_dv=StructureDesignVariables(
                 **{k: getattr(adj_dv_raw.structure, k) for k in dv.structure.to_dict()},
                 f_shape=f_shape,
             ),
@@ -529,7 +529,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
             )  # [n_j, n_x]
             indirect_dict = dv.from_adjoint(f_shape, indirect_mat)
             adj_dv += AeroelasticDesignVariables(
-                structure_dv=StructuralDesignVariables(
+                structure_dv=StructureDesignVariables(
                     **{k: indirect_dict[k] for k in dv.structure.to_dict()},
                     f_shape=f_shape,
                 ),
@@ -589,8 +589,8 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
             varphi_n_: Array,
             v_n_: Array,
             t_n_: Array,
-            q_nm1_aero_: AeroStates,
-            q_n_aero_: AeroStates,
+            q_nm1_aero_: AeroFullStates,
+            q_n_aero_: AeroFullStates,
             dv__: AeroelasticDesignVariables,
             dv_full_: AeroelasticDesignVariables,
             f_aero_beam_n_: Array,
@@ -650,7 +650,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
     ) -> tuple[
         Array,
         Array,
-        StructuralDesignVariables,
+        StructureDesignVariables,
         AeroelasticDesignVariables,
         dict[str, dict[str, float]] | None,
         dict[str, dict[str, float]] | None,
@@ -993,7 +993,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
 
         return apply_precond
 
-    @jax.jit(static_argnums=(0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15))
+    @jax.jit(static_argnums=(0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17))
     def dynamic_adjoint(
         self,
         case: AeroelasticCase,
@@ -1006,7 +1006,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
         approx_grads: bool = True,
         i_ts_adjoint_range: tuple[int | None, int | None] = (None, None),
         include_initial_state_grad: bool = True,
-        gmres_mode: Literal["batched", "incremental"] = "batched",
+        gmres_mode: Literal["batched", "incremental"] = "incremental",
         gmres_warm_start: bool = True,
         gmres_precond: bool = True,
         gmres_restart: int = 50,
@@ -1165,7 +1165,6 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
 
         d_j_d_x: AeroelasticDesignVariables
         if matrix_free:
-            # optional preconditioner for the matrix-free GMRES solves.
             if preconditioner is not None:
                 apply_precond = preconditioner
             elif gmres_precond:
@@ -1266,9 +1265,10 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
                 d_j_d_x_ += p_j_n_p_x
 
                 jax_print(
-                    "\nSolved adjoint for timestep {i_ts} (GMRES converged={converged})",
+                    "\nSolved adjoint for timestep {i_ts} (GMRES converged={converged}, max|adj|={ma:.2e})",
                     i_ts=i_ts,
                     converged=jnp.max(gmres_info) == 0,
+                    ma=jnp.max(jnp.abs(adj_n)),
                     verbose_level="normal",
                 )
 
@@ -1660,7 +1660,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
 
         # set solutions into case object
         self.set_design_variables(
-            coords=self.structure.x0,
+            coords=self.structure.x0_reference,
             k_cs=self.structure.k_cs,
             m_cs=self.structure.m_cs,
             m_lumped=self.structure.m_lumped
@@ -1709,7 +1709,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
     ) -> tuple[AeroelasticCase, Array]:
         """Push trim variables into inner_case, run a static solve, and return ``(solution, clamp-force residual)``."""
         inner_case.set_design_variables(
-            coords=inner_case.structure.x0,
+            coords=inner_case.structure.x0_reference,
             k_cs=inner_case.structure.k_cs,
             m_cs=inner_case.structure.m_cs,
             m_lumped=inner_case.structure.m_lumped
@@ -1822,7 +1822,7 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
                 case=ae_sol,
                 objective=objective,
                 grads_to_compute=AeroelasticGradsToCompute(
-                    structure=StructuralGradsToCompute(
+                    structure=StructureGradsToCompute(
                         x0=False,
                         orientation_euler=True,
                         k_cs=False,

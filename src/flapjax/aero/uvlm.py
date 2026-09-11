@@ -20,9 +20,9 @@ from flapjax.aero.data_structures import (
 from flapjax.aero.flowfields import FlowField
 from flapjax.aero.gradients.data_structures import (
     AeroDesignVariables,
+    AeroFullStates,
     AeroGradsToCompute,
     AeroJacobianApproximations,
-    AeroStates,
     FAeroApprox,
     GammaBApprox,
     GammaBDotApprox,
@@ -34,9 +34,9 @@ from flapjax.aero.utils import (
     PolarFunction,
     apply_polar_correction,
     biot_savart_epsilon,
-    calculate_steady_forcing,
     compute_c,
     compute_nc,
+    compute_steady_forcing,
     project_forcing_to_beam,
     propagate_wake,
     strip_alpha,
@@ -748,7 +748,7 @@ class UVLM:
 
     def base_solve(
         self,
-        q_nm1: AeroStates | None,
+        q_nm1: AeroFullStates | None,
         t_n: Array,
         hg_n: Array | None,
         hg_nm1: Array | None,
@@ -826,7 +826,7 @@ class UVLM:
 
     def base_solve_from_grid(
         self,
-        q_nm1: AeroStates | None,
+        q_nm1: AeroFullStates | None,
         t_n: Array,
         zeta_b_n: ArrayList,
         zeta_b_nm1: ArrayList | None,
@@ -1035,7 +1035,7 @@ class UVLM:
                 mirror_point=self.mirror_point,
             )
 
-        f_steady = calculate_steady_forcing(
+        f_steady = compute_steady_forcing(
             zeta_b=zeta_b_n,
             zeta_dot_b=zeta_b_dot_for_forces,
             gamma_b=gamma_b_n,
@@ -1151,7 +1151,7 @@ class UVLM:
 
         assert case.gamma_b_dot is not None and case.zeta_w is not None
 
-        q_nm1 = AeroStates(
+        q_nm1 = AeroFullStates(
             gamma_b=case.gamma_b.index_all(i_ts - 1, ...),
             gamma_w=case.gamma_w.index_all(i_ts - 1, ...),
             gamma_b_dot=case.gamma_b_dot.index_all(i_ts - 1, ...),
@@ -1466,7 +1466,7 @@ class UVLM:
         hg_nm1: Array,
         hg_dot_n: Array,
         t_n: Array,
-        q_nm1: AeroStates,
+        q_nm1: AeroFullStates,
         dv: AeroDesignVariables,
         cs_ang_n: dict[str, Array],
         cs_ang_nm1: dict[str, Array] | None,
@@ -1581,7 +1581,7 @@ class UVLM:
         )
 
         inner_struct = struct_obj.case_from_dv(dv=dv.structure)
-        hg_n = inner_struct.calculate_hg_from_varphi(varphi=varphi_n)
+        hg_n = inner_struct.compute_hg_from_varphi(varphi=varphi_n)
         hg_dot_n = inner_struct.make_hg_dot(hg=hg_n, v=v_n)
 
         inner_case = self.case_from_dv(dv=dv.aero)
@@ -1712,8 +1712,8 @@ class UVLM:
         )
 
         inner_struct = struct_obj.case_from_dv(dv=dv.structure)
-        hg_nm1 = inner_struct.calculate_hg_from_varphi(varphi=varphi_nm1)
-        hg_n = inner_struct.calculate_hg_from_varphi(varphi=varphi_n)
+        hg_nm1 = inner_struct.compute_hg_from_varphi(varphi=varphi_nm1)
+        hg_n = inner_struct.compute_hg_from_varphi(varphi=varphi_n)
 
         inner_case = self.case_from_dv(dv=dv.aero)
 
@@ -1872,7 +1872,7 @@ class UVLM:
         f_aero_beam_n = f_aero_beam_n.reshape(-1, 6)
 
         inner_struct = struct_obj.case_from_dv(dv=dv.structure)
-        hg_n = inner_struct.calculate_hg_from_varphi(varphi=varphi_n)
+        hg_n = inner_struct.compute_hg_from_varphi(varphi=varphi_n)
         hg_dot_n = inner_struct.make_hg_dot(hg=hg_n, v=v_n)
 
         inner_case = self.case_from_dv(dv=dv.aero)
@@ -1901,7 +1901,7 @@ class UVLM:
                 mirror_point=inner_case.mirror_point,
             )
 
-        f_steady = calculate_steady_forcing(
+        f_steady = compute_steady_forcing(
             zeta_b=zeta_b_n,
             zeta_dot_b=zeta_b_dot_n,
             gamma_b=gamma_b_n,
@@ -1949,8 +1949,8 @@ class UVLM:
         varphi_n: Array,
         v_n: Array,
         t_n: Array,
-        q_n: AeroStates,
-        q_nm1: AeroStates,
+        q_n: AeroFullStates,
+        q_nm1: AeroFullStates,
         dv: AeroelasticDesignVariables,
         dv_full: AeroelasticDesignVariables,
         f_aero_beam_n: Array,
@@ -2190,8 +2190,8 @@ class UVLM:
         varphi_n: Array,
         v_n: Array,
         t_n: Array,
-        q_n: AeroStates,
-        q_nm1: AeroStates,
+        q_n: AeroFullStates,
+        q_nm1: AeroFullStates,
         dv: AeroelasticDesignVariables,
         dv_full: AeroelasticDesignVariables,
         f_aero_beam_n: Array,

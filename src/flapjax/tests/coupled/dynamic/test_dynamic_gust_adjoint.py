@@ -7,7 +7,7 @@ from flapjax.coupled import AeroelasticCase, CoupledAeroelastic
 from flapjax.coupled.data_structures import AeroelasticFullStates
 from flapjax.coupled.gradients.data_structures import AeroelasticGradsToCompute
 from flapjax.models.cantilever_wing import generate_cantilever_wing
-from flapjax.structure.gradients.data_structures import StructuralGradsToCompute
+from flapjax.structure.gradients.data_structures import StructureGradsToCompute
 from flapjax.utils.data_structures import ConvergenceSettings
 
 # Discretisation parameters shared across all tests
@@ -98,7 +98,7 @@ class TestDynamicGustAdjoint:
         # to design variables), needed to propagate initial condition sensitivity for
         # parameters like k_cs that affect the static equilibrium.
         grads_to_compute = AeroelasticGradsToCompute(
-            structure=StructuralGradsToCompute(k_cs=True),
+            structure=StructureGradsToCompute(k_cs=True),
             aero=AeroGradsToCompute(flowfield=True),
         )
 

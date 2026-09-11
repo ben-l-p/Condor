@@ -4,9 +4,9 @@ from flapjax.aero.data_structures import (
 )
 from flapjax.aero.flowfields import ConstantFlowField, OneMinusCosineFlowField
 from flapjax.aero.gradients.data_structures import (
+    AeroFullStates,
     AeroGradsToCompute,
     AeroJacobianApproximations,
-    AeroStates,
 )
 from flapjax.aero.linear.data_structures import (
     AeroInputUnflattened,

@@ -8,7 +8,7 @@ from flapjax.coupled.data_structures import (
 )
 from flapjax.coupled.gradients.data_structures import AeroelasticGradsToCompute
 from flapjax.models.cantilever_wing import generate_cantilever_wing
-from flapjax.structure.gradients.data_structures import StructuralGradsToCompute
+from flapjax.structure.gradients.data_structures import StructureGradsToCompute
 from flapjax.utils.data_structures import ConvergenceSettings
 
 
@@ -80,7 +80,7 @@ class TestDynamicEquilibriumAdjoint:
             dynamic_sol.plot(directory="./test_outputs/dynamic_coupled_adjoint")
 
         grads_to_compute: AeroelasticGradsToCompute = AeroelasticGradsToCompute(
-            structure=StructuralGradsToCompute(m_cs=True, k_cs=True),
+            structure=StructureGradsToCompute(m_cs=True, k_cs=True),
             aero=AeroGradsToCompute(flowfield=True),
         )
 

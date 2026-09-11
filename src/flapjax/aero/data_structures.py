@@ -11,7 +11,7 @@ from jax import numpy as jnp
 
 from flapjax.aero.aic import compute_v_ind
 from flapjax.aero.flowfields import FlowField
-from flapjax.aero.gradients.data_structures import AeroStates
+from flapjax.aero.gradients.data_structures import AeroFullStates
 from flapjax.aero.utils import (
     KernelFunction,
     compute_c,
@@ -237,7 +237,7 @@ class AeroCase:
     def gamma_b_dot(self, value: ArrayList | None) -> None:
         self._gamma_b_dot = value
 
-    def get_states(self, i_ts: int | Array | None = None) -> AeroStates:
+    def get_states(self, i_ts: int | Array | None = None) -> AeroFullStates:
         r"""
         Obtain the aerodynamic state at a given timestep (used in the adjoint solution).
         :param i_ts: Time step index (required for batched, ignored for snapshot).
@@ -247,14 +247,14 @@ class AeroCase:
             if i_ts is None:
                 raise ValueError("i_ts must be provided for batched AeroCase")
             assert self.gamma_b_dot is not None and self.zeta_w is not None
-            return AeroStates(
+            return AeroFullStates(
                 gamma_b=self.gamma_b.index_all(i_ts, ...),
                 gamma_w=self.gamma_w.index_all(i_ts, ...),
                 gamma_b_dot=self.gamma_b_dot.index_all(i_ts, ...),
                 zeta_w=self.zeta_w.index_all(i_ts, ...),
             )
         assert self.gamma_b_dot is not None and self.zeta_w is not None
-        return AeroStates(
+        return AeroFullStates(
             gamma_b=self.gamma_b,
             gamma_w=self.gamma_w,
             gamma_b_dot=self.gamma_b_dot,

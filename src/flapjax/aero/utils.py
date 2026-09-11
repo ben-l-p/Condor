@@ -123,7 +123,7 @@ def compute_nc(zetas: ArrayList) -> ArrayList:
     return ArrayList([compute_surf_nc(zeta) for zeta in zetas])
 
 
-def calculate_steady_forcing(
+def compute_steady_forcing(
     zeta_b: ArrayList,
     zeta_dot_b: ArrayList | None,
     gamma_b: ArrayList,

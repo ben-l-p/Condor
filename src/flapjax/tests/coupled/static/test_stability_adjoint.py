@@ -14,8 +14,8 @@ from flapjax.coupled import (
     CoupledAeroelastic,
     stability_adjoint,
 )
-from flapjax.models.pazy.straight.pazy_wing import make_pazy_wing
-from flapjax.structure.gradients.data_structures import StructuralGradsToCompute
+from flapjax.models.pazy.straight.pazy_wing import generate_pazy_wing
+from flapjax.structure.gradients.data_structures import StructureGradsToCompute
 from flapjax.utils.data_structures import ConvergenceSettings
 
 M = 8
@@ -27,7 +27,7 @@ RHO_KS = 20.0
 
 
 def _build_wing(u_inf_mag: float) -> CoupledAeroelastic:
-    wing = make_pazy_wing(
+    wing = generate_pazy_wing(
         flowfield=ConstantFlowField(
             u_inf=jnp.array((u_inf_mag, 0.0, 0.0)),
             rho=RHO,
@@ -103,7 +103,7 @@ def compute_objective(
 
 class TestStabilityAdjoint:
     grads_to_compute: AeroelasticGradsToCompute = AeroelasticGradsToCompute(
-        structure=StructuralGradsToCompute(k_cs=True),
+        structure=StructureGradsToCompute(k_cs=True),
         aero=AeroGradsToCompute(x0_aero=False, flowfield=True),
     )
 

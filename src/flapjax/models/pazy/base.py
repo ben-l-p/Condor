@@ -43,7 +43,7 @@ class PazyParameters:
     inertia_at_axis: bool = False
 
 
-def make_generic_pazy_wing(
+def generate_generic_pazy_wing(
     data: PazyParameters,
     m: int,
     m_star: int,
