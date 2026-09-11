@@ -3618,15 +3618,15 @@
 
                   <details class="mkdocstrings-source">
                     <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
+<span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">structure</span><span class="p">:</span> <span class="n">BeamStructure</span><span class="p">,</span>
     <span class="n">aero</span><span class="p">:</span> <span class="n">UVLM</span><span class="p">,</span>
@@ -3743,7 +3743,8 @@ variables are obtained.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">104</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
+<span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
 <span class="normal">107</span>
@@ -3769,8 +3770,7 @@ variables are obtained.</p>
 <span class="normal">127</span>
 <span class="normal">128</span>
 <span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_design_variables</span><span class="p">(</span>
+<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_design_variables</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span>
     <span class="n">grads_to_compute</span><span class="p">:</span> <span class="n">AeroelasticGradsToCompute</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -3813,7 +3813,7 @@ variables are obtained.</p>
 
 <a href="#flapjax.coupled.coupled.BaseCoupledAeroelastic.reference_configuration" class="headerlink" title="Permanent link">&para;</a></h5>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">reference_configuration</span><span class="p">(</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">horseshoe</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">use_f_ext_follower</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">use_f_ext_dead</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -3842,7 +3842,7 @@ variables are obtained.</p>
                 <code>prescribed_dofs</code>
             </td>
             <td>
-                  <code><span title="tuple">tuple</span>[<span title="int">int</span>, ...]</code>
+                  <code><span title="collections.abc.Sequence">Sequence</span>[<span title="int">int</span>] | <span title="jax.Array">Array</span> | <span title="slice">slice</span> | <span title="int">int</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3946,7 +3946,8 @@ variables are obtained.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">133</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
+<span class="normal">133</span>
 <span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
@@ -3977,7 +3978,7 @@ variables are obtained.</p>
 <span class="normal">161</span>
 <span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reference_configuration</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">horseshoe</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">use_f_ext_follower</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">use_f_ext_dead</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -3993,6 +3994,7 @@ variables are obtained.</p>
 <span class="sd">    :param t_init: Initial time</span>
 <span class="sd">    :return: Static aeroelastic object for undeformed wing</span>
 <span class="sd">    """</span>
+    <span class="n">prescribed_dofs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">make_prescribed_dofs_tuple</span><span class="p">(</span><span class="n">prescribed_dofs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">AeroelasticCase</span><span class="p">(</span>
         <span class="n">structure</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">reference_configuration</span><span class="p">(</span>
             <span class="n">use_f_grav</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">use_gravity</span><span class="p">,</span>
@@ -4021,7 +4023,7 @@ variables are obtained.</p>
 <a href="#flapjax.coupled.coupled.BaseCoupledAeroelastic.initialise_dynamic" class="headerlink" title="Permanent link">&para;</a></h5>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">initialise_dynamic</span><span class="p">(</span>
     <span class="n">static_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroelasticCase</span>
 </code></pre></div>
 
@@ -4064,7 +4066,7 @@ velocity to be that of the freestream.</p>
                 <code>prescribed_dofs</code>
             </td>
             <td>
-                  <code><span title="tuple">tuple</span>[<span title="int">int</span>, ...]</code>
+                  <code><span title="collections.abc.Sequence">Sequence</span>[<span title="int">int</span>] | <span title="jax.Array">Array</span> | <span title="slice">slice</span> | <span title="int">int</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4105,14 +4107,7 @@ dynamic case.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">439</span>
-<span class="normal">440</span>
-<span class="normal">441</span>
-<span class="normal">442</span>
-<span class="normal">443</span>
-<span class="normal">444</span>
-<span class="normal">445</span>
-<span class="normal">446</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">446</span>
 <span class="normal">447</span>
 <span class="normal">448</span>
 <span class="normal">449</span>
@@ -4137,8 +4132,19 @@ dynamic case.</p>
 <span class="normal">468</span>
 <span class="normal">469</span>
 <span class="normal">470</span>
-<span class="normal">471</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialise_dynamic</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">static_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span> <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="normal">471</span>
+<span class="normal">472</span>
+<span class="normal">473</span>
+<span class="normal">474</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span>
+<span class="normal">480</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialise_dynamic</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">static_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroelasticCase</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Initialise a dynamic aeroelastic snapshot from a static aeroelastic case. This takes a static aeroelastic case</span>
@@ -4161,8 +4167,8 @@ dynamic case.</p>
 
     <span class="n">dynamic_case</span> <span class="o">=</span> <span class="n">static_case</span><span class="o">.</span><span class="n">to_dynamic</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">dynamic_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">dynamic_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">at</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">v_local</span><span class="p">)</span>
-    <span class="n">dynamic_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">prescribed_dofs</span> <span class="o">=</span> <span class="n">input_dof_index_to_tuple</span><span class="p">(</span>
-        <span class="n">prescribed_dofs</span>
+    <span class="n">dynamic_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">prescribed_dofs</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">make_prescribed_dofs_tuple</span><span class="p">(</span><span class="n">prescribed_dofs</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">dynamic_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">free_dofs</span> <span class="o">=</span> <span class="n">get_solve_dofs</span><span class="p">(</span>
         <span class="n">n_dof</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">n_dof</span><span class="p">,</span>
@@ -4965,15 +4971,15 @@ structure path is a PVD; for snapshots it is a single VTU.</p>
 
                   <details class="mkdocstrings-source">
                     <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
+<span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">structure</span><span class="p">:</span> <span class="n">BeamStructure</span><span class="p">,</span>
     <span class="n">aero</span><span class="p">:</span> <span class="n">UVLM</span><span class="p">,</span>
@@ -9338,16 +9344,8 @@ None, all gradients will be computed.</p>
 
 <a href="#flapjax.coupled.gradients.coupled.CoupledAeroelastic.trim" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">trim</span><span class="p">(</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="o">|</span> <span class="n">Array</span>
-    <span class="o">|</span> <span class="nb">slice</span>
-    <span class="o">|</span> <span class="nb">int</span>
-    <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">zero_force_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="o">|</span> <span class="n">Array</span>
-    <span class="o">|</span> <span class="nb">slice</span>
-    <span class="o">|</span> <span class="nb">int</span>
-    <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">zero_force_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">trim_cs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">thrust_nodes</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
     <span class="o">|</span> <span class="nb">str</span>
@@ -9389,7 +9387,7 @@ None, all gradients will be computed.</p>
                 <code>prescribed_dofs</code>
             </td>
             <td>
-                  <code><span title="collections.abc.Sequence">Sequence</span>[<span title="int">int</span>] | <span title="jax.Array">Array</span> | <span title="slice">slice</span> | <span title="int">int</span> | None</code>
+                  <code><span title="collections.abc.Sequence">Sequence</span>[<span title="int">int</span>] | <span title="jax.Array">Array</span> | <span title="slice">slice</span> | <span title="int">int</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -9405,7 +9403,7 @@ None, all gradients will be computed.</p>
                 <code>zero_force_dofs</code>
             </td>
             <td>
-                  <code><span title="collections.abc.Sequence">Sequence</span>[<span title="int">int</span>] | <span title="jax.Array">Array</span> | <span title="slice">slice</span> | <span title="int">int</span> | None</code>
+                  <code><span title="collections.abc.Sequence">Sequence</span>[<span title="int">int</span>] | <span title="jax.Array">Array</span> | <span title="slice">slice</span> | <span title="int">int</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -9900,8 +9898,8 @@ this limit.</p>
 <span class="normal">1680</span>
 <span class="normal">1681</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">trim</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">zero_force_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">zero_force_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">trim_cs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">thrust_nodes</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">trim_orientation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">"x"</span><span class="p">,</span>
@@ -10335,7 +10333,8 @@ variables are obtained.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">104</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
+<span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
 <span class="normal">107</span>
@@ -10361,8 +10360,7 @@ variables are obtained.</p>
 <span class="normal">127</span>
 <span class="normal">128</span>
 <span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_design_variables</span><span class="p">(</span>
+<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_design_variables</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span>
     <span class="n">grads_to_compute</span><span class="p">:</span> <span class="n">AeroelasticGradsToCompute</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -10405,7 +10403,7 @@ variables are obtained.</p>
 
 <a href="#flapjax.coupled.gradients.coupled.CoupledAeroelastic.reference_configuration" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">reference_configuration</span><span class="p">(</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">horseshoe</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">use_f_ext_follower</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">use_f_ext_dead</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -10434,7 +10432,7 @@ variables are obtained.</p>
                 <code>prescribed_dofs</code>
             </td>
             <td>
-                  <code><span title="tuple">tuple</span>[<span title="int">int</span>, ...]</code>
+                  <code><span title="collections.abc.Sequence">Sequence</span>[<span title="int">int</span>] | <span title="jax.Array">Array</span> | <span title="slice">slice</span> | <span title="int">int</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -10538,7 +10536,8 @@ variables are obtained.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">133</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
+<span class="normal">133</span>
 <span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
@@ -10569,7 +10568,7 @@ variables are obtained.</p>
 <span class="normal">161</span>
 <span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reference_configuration</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">horseshoe</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">use_f_ext_follower</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">use_f_ext_dead</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -10585,6 +10584,7 @@ variables are obtained.</p>
 <span class="sd">    :param t_init: Initial time</span>
 <span class="sd">    :return: Static aeroelastic object for undeformed wing</span>
 <span class="sd">    """</span>
+    <span class="n">prescribed_dofs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">make_prescribed_dofs_tuple</span><span class="p">(</span><span class="n">prescribed_dofs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">AeroelasticCase</span><span class="p">(</span>
         <span class="n">structure</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">reference_configuration</span><span class="p">(</span>
             <span class="n">use_f_grav</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">use_gravity</span><span class="p">,</span>
@@ -10613,7 +10613,7 @@ variables are obtained.</p>
 <a href="#flapjax.coupled.gradients.coupled.CoupledAeroelastic.initialise_dynamic" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">initialise_dynamic</span><span class="p">(</span>
     <span class="n">static_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroelasticCase</span>
 </code></pre></div>
 
@@ -10656,7 +10656,7 @@ velocity to be that of the freestream.</p>
                 <code>prescribed_dofs</code>
             </td>
             <td>
-                  <code><span title="tuple">tuple</span>[<span title="int">int</span>, ...]</code>
+                  <code><span title="collections.abc.Sequence">Sequence</span>[<span title="int">int</span>] | <span title="jax.Array">Array</span> | <span title="slice">slice</span> | <span title="int">int</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -10697,14 +10697,7 @@ dynamic case.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">439</span>
-<span class="normal">440</span>
-<span class="normal">441</span>
-<span class="normal">442</span>
-<span class="normal">443</span>
-<span class="normal">444</span>
-<span class="normal">445</span>
-<span class="normal">446</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">446</span>
 <span class="normal">447</span>
 <span class="normal">448</span>
 <span class="normal">449</span>
@@ -10729,8 +10722,19 @@ dynamic case.</p>
 <span class="normal">468</span>
 <span class="normal">469</span>
 <span class="normal">470</span>
-<span class="normal">471</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialise_dynamic</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">static_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span> <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="normal">471</span>
+<span class="normal">472</span>
+<span class="normal">473</span>
+<span class="normal">474</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span>
+<span class="normal">480</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialise_dynamic</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">static_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroelasticCase</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Initialise a dynamic aeroelastic snapshot from a static aeroelastic case. This takes a static aeroelastic case</span>
@@ -10753,8 +10757,8 @@ dynamic case.</p>
 
     <span class="n">dynamic_case</span> <span class="o">=</span> <span class="n">static_case</span><span class="o">.</span><span class="n">to_dynamic</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">dynamic_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">dynamic_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">at</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">v_local</span><span class="p">)</span>
-    <span class="n">dynamic_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">prescribed_dofs</span> <span class="o">=</span> <span class="n">input_dof_index_to_tuple</span><span class="p">(</span>
-        <span class="n">prescribed_dofs</span>
+    <span class="n">dynamic_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">prescribed_dofs</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">make_prescribed_dofs_tuple</span><span class="p">(</span><span class="n">prescribed_dofs</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">dynamic_case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">free_dofs</span> <span class="o">=</span> <span class="n">get_solve_dofs</span><span class="p">(</span>
         <span class="n">n_dof</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">n_dof</span><span class="p">,</span>
@@ -11497,6 +11501,11 @@ the names of the members in that group.</p>
     <span class="n">int_order</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">BASE_LOBATTO_ORDER</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">skip_checks</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="o">|</span> <span class="n">Array</span>
+    <span class="o">|</span> <span class="nb">slice</span>
+    <span class="o">|</span> <span class="nb">int</span>
+    <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -11577,7 +11586,17 @@ the names of the members in that group.</p>
 <span class="normal">118</span>
 <span class="normal">119</span>
 <span class="normal">120</span>
-<span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">case</span><span class="p">:</span> <span class="n">BaseCoupledAeroelastic</span><span class="p">,</span>
     <span class="n">reference</span><span class="p">:</span> <span class="n">AeroelasticCase</span><span class="p">,</span>
@@ -11590,7 +11609,13 @@ the names of the members in that group.</p>
     <span class="n">int_order</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">BASE_LOBATTO_ORDER</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">skip_checks</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
+    <span class="k">if</span> <span class="n">prescribed_dofs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">prescribed_dofs</span> <span class="o">=</span> <span class="n">case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">make_prescribed_dofs_tuple</span><span class="p">(</span>
+            <span class="n">prescribed_dofs</span>
+        <span class="p">)</span>
+
     <span class="bp">self</span><span class="o">.</span><span class="n">aero</span> <span class="o">=</span> <span class="n">LinearUVLM</span><span class="p">(</span>
         <span class="n">case</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">aero</span><span class="p">,</span>
         <span class="n">reference</span><span class="o">=</span><span class="n">reference</span><span class="o">.</span><span class="n">aero</span><span class="p">,</span>
@@ -11607,11 +11632,15 @@ the names of the members in that group.</p>
         <span class="n">dt</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">aero</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span>
         <span class="n">n_modes</span><span class="o">=</span><span class="n">n_struct_modes</span><span class="p">,</span>
         <span class="n">int_order</span><span class="o">=</span><span class="n">int_order</span><span class="p">,</span>
+        <span class="n">prescribed_dofs</span><span class="o">=</span><span class="n">prescribed_dofs</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">n_beam_nodal_dof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">n_dof</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span>
-        <span class="n">reference</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">prescribed_dofs</span>
+    <span class="n">effective_prescribed</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">prescribed_dofs</span>
+        <span class="k">if</span> <span class="n">prescribed_dofs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">else</span> <span class="n">reference</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">prescribed_dofs</span>
     <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">n_beam_nodal_dof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">n_dof</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">effective_prescribed</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">n_beam_input_dof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="p">(</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">n_modes</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">modal_inputs</span>
@@ -11632,7 +11661,7 @@ the names of the members in that group.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">free_dofs</span><span class="p">:</span> <span class="n">Array</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
         <span class="n">get_solve_dofs</span><span class="p">(</span>
             <span class="n">n_dof</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">n_dof</span><span class="p">,</span>
-            <span class="n">prescribed_dofs</span><span class="o">=</span><span class="n">reference</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">prescribed_dofs</span><span class="p">,</span>
+            <span class="n">prescribed_dofs</span><span class="o">=</span><span class="n">effective_prescribed</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="p">)</span>
 
@@ -11688,17 +11717,7 @@ at timestep n.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/linear/linear_coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">262</span>
-<span class="normal">263</span>
-<span class="normal">264</span>
-<span class="normal">265</span>
-<span class="normal">266</span>
-<span class="normal">267</span>
-<span class="normal">268</span>
-<span class="normal">269</span>
-<span class="normal">270</span>
-<span class="normal">271</span>
-<span class="normal">272</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">272</span>
 <span class="normal">273</span>
 <span class="normal">274</span>
 <span class="normal">275</span>
@@ -11890,7 +11909,17 @@ at timestep n.</p>
 <span class="normal">461</span>
 <span class="normal">462</span>
 <span class="normal">463</span>
-<span class="normal">464</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span>
+<span class="normal">464</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span>
+<span class="normal">468</span>
+<span class="normal">469</span>
+<span class="normal">470</span>
+<span class="normal">471</span>
+<span class="normal">472</span>
+<span class="normal">473</span>
+<span class="normal">474</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">gamma_b_vec</span><span class="p">:</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">gamma_w_vec</span><span class="p">:</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -12124,17 +12153,7 @@ at timestep n.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/linear/linear_coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">466</span>
-<span class="normal">467</span>
-<span class="normal">468</span>
-<span class="normal">469</span>
-<span class="normal">470</span>
-<span class="normal">471</span>
-<span class="normal">472</span>
-<span class="normal">473</span>
-<span class="normal">474</span>
-<span class="normal">475</span>
-<span class="normal">476</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">476</span>
 <span class="normal">477</span>
 <span class="normal">478</span>
 <span class="normal">479</span>
@@ -12148,7 +12167,17 @@ at timestep n.</p>
 <span class="normal">487</span>
 <span class="normal">488</span>
 <span class="normal">489</span>
-<span class="normal">490</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gamma_b_step</span><span class="p">(</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gamma_b_step</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">gamma_b_n_vec</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">gamma_w_n_vec</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
@@ -12203,17 +12232,7 @@ at timestep n.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/linear/linear_coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">492</span>
-<span class="normal">493</span>
-<span class="normal">494</span>
-<span class="normal">495</span>
-<span class="normal">496</span>
-<span class="normal">497</span>
-<span class="normal">498</span>
-<span class="normal">499</span>
-<span class="normal">500</span>
-<span class="normal">501</span>
-<span class="normal">502</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">502</span>
 <span class="normal">503</span>
 <span class="normal">504</span>
 <span class="normal">505</span>
@@ -12229,7 +12248,17 @@ at timestep n.</p>
 <span class="normal">515</span>
 <span class="normal">516</span>
 <span class="normal">517</span>
-<span class="normal">518</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">wake_prop_step</span><span class="p">(</span>
+<span class="normal">518</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span>
+<span class="normal">528</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">wake_prop_step</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">gamma_b_n_vec</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">gamma_w_n_vec</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
@@ -12290,17 +12319,7 @@ at timestep n.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/linear/linear_coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">520</span>
-<span class="normal">521</span>
-<span class="normal">522</span>
-<span class="normal">523</span>
-<span class="normal">524</span>
-<span class="normal">525</span>
-<span class="normal">526</span>
-<span class="normal">527</span>
-<span class="normal">528</span>
-<span class="normal">529</span>
-<span class="normal">530</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">530</span>
 <span class="normal">531</span>
 <span class="normal">532</span>
 <span class="normal">533</span>
@@ -12320,7 +12339,17 @@ at timestep n.</p>
 <span class="normal">547</span>
 <span class="normal">548</span>
 <span class="normal">549</span>
-<span class="normal">550</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">q_step</span><span class="p">(</span>
+<span class="normal">550</span>
+<span class="normal">551</span>
+<span class="normal">552</span>
+<span class="normal">553</span>
+<span class="normal">554</span>
+<span class="normal">555</span>
+<span class="normal">556</span>
+<span class="normal">557</span>
+<span class="normal">558</span>
+<span class="normal">559</span>
+<span class="normal">560</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">q_step</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">q_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">q_dot_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
@@ -12385,17 +12414,7 @@ at timestep n.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/linear/linear_coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">552</span>
-<span class="normal">553</span>
-<span class="normal">554</span>
-<span class="normal">555</span>
-<span class="normal">556</span>
-<span class="normal">557</span>
-<span class="normal">558</span>
-<span class="normal">559</span>
-<span class="normal">560</span>
-<span class="normal">561</span>
-<span class="normal">562</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">562</span>
 <span class="normal">563</span>
 <span class="normal">564</span>
 <span class="normal">565</span>
@@ -12415,7 +12434,17 @@ at timestep n.</p>
 <span class="normal">579</span>
 <span class="normal">580</span>
 <span class="normal">581</span>
-<span class="normal">582</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">q_dot_step</span><span class="p">(</span>
+<span class="normal">582</span>
+<span class="normal">583</span>
+<span class="normal">584</span>
+<span class="normal">585</span>
+<span class="normal">586</span>
+<span class="normal">587</span>
+<span class="normal">588</span>
+<span class="normal">589</span>
+<span class="normal">590</span>
+<span class="normal">591</span>
+<span class="normal">592</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">q_dot_step</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">q_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
     <span class="n">q_dot_n</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
@@ -12506,17 +12535,7 @@ take the same arguments as the first output.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/linear/linear_coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">584</span>
-<span class="normal">585</span>
-<span class="normal">586</span>
-<span class="normal">587</span>
-<span class="normal">588</span>
-<span class="normal">589</span>
-<span class="normal">590</span>
-<span class="normal">591</span>
-<span class="normal">592</span>
-<span class="normal">593</span>
-<span class="normal">594</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">594</span>
 <span class="normal">595</span>
 <span class="normal">596</span>
 <span class="normal">597</span>
@@ -12642,7 +12661,17 @@ take the same arguments as the first output.</p>
 <span class="normal">717</span>
 <span class="normal">718</span>
 <span class="normal">719</span>
-<span class="normal">720</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_jacobians</span><span class="p">(</span>
+<span class="normal">720</span>
+<span class="normal">721</span>
+<span class="normal">722</span>
+<span class="normal">723</span>
+<span class="normal">724</span>
+<span class="normal">725</span>
+<span class="normal">726</span>
+<span class="normal">727</span>
+<span class="normal">728</span>
+<span class="normal">729</span>
+<span class="normal">730</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_jacobians</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
     <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]],</span>
@@ -12816,17 +12845,7 @@ take the same arguments as the first output.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/linear/linear_coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">778</span>
-<span class="normal">779</span>
-<span class="normal">780</span>
-<span class="normal">781</span>
-<span class="normal">782</span>
-<span class="normal">783</span>
-<span class="normal">784</span>
-<span class="normal">785</span>
-<span class="normal">786</span>
-<span class="normal">787</span>
-<span class="normal">788</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">788</span>
 <span class="normal">789</span>
 <span class="normal">790</span>
 <span class="normal">791</span>
@@ -12903,7 +12922,17 @@ take the same arguments as the first output.</p>
 <span class="normal">862</span>
 <span class="normal">863</span>
 <span class="normal">864</span>
-<span class="normal">865</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_jacobians</span><span class="p">(</span>
+<span class="normal">865</span>
+<span class="normal">866</span>
+<span class="normal">867</span>
+<span class="normal">868</span>
+<span class="normal">869</span>
+<span class="normal">870</span>
+<span class="normal">871</span>
+<span class="normal">872</span>
+<span class="normal">873</span>
+<span class="normal">874</span>
+<span class="normal">875</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_jacobians</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">mode</span><span class="p">:</span> <span class="n">ADMode</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ADMode</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"reverse"</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -13073,17 +13102,7 @@ take the same arguments as the first output.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/linear/linear_coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">948</span>
-<span class="normal">949</span>
-<span class="normal">950</span>
-<span class="normal">951</span>
-<span class="normal">952</span>
-<span class="normal">953</span>
-<span class="normal">954</span>
-<span class="normal">955</span>
-<span class="normal">956</span>
-<span class="normal">957</span>
-<span class="normal">958</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">958</span>
 <span class="normal">959</span>
 <span class="normal">960</span>
 <span class="normal">961</span>
@@ -13097,7 +13116,17 @@ take the same arguments as the first output.</p>
 <span class="normal">969</span>
 <span class="normal">970</span>
 <span class="normal">971</span>
-<span class="normal">972</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">linearise_profile</span><span class="p">(</span>
+<span class="normal">972</span>
+<span class="normal">973</span>
+<span class="normal">974</span>
+<span class="normal">975</span>
+<span class="normal">976</span>
+<span class="normal">977</span>
+<span class="normal">978</span>
+<span class="normal">979</span>
+<span class="normal">980</span>
+<span class="normal">981</span>
+<span class="normal">982</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">linearise_profile</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">n_profile_loops</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
@@ -13468,17 +13497,7 @@ to skip plotting.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/flapjax/coupled/linear/linear_coupled.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 974</span>
-<span class="normal"> 975</span>
-<span class="normal"> 976</span>
-<span class="normal"> 977</span>
-<span class="normal"> 978</span>
-<span class="normal"> 979</span>
-<span class="normal"> 980</span>
-<span class="normal"> 981</span>
-<span class="normal"> 982</span>
-<span class="normal"> 983</span>
-<span class="normal"> 984</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 984</span>
 <span class="normal"> 985</span>
 <span class="normal"> 986</span>
 <span class="normal"> 987</span>
@@ -13642,7 +13661,17 @@ to skip plotting.</p>
 <span class="normal">1145</span>
 <span class="normal">1146</span>
 <span class="normal">1147</span>
-<span class="normal">1148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">modal</span><span class="p">(</span>
+<span class="normal">1148</span>
+<span class="normal">1149</span>
+<span class="normal">1150</span>
+<span class="normal">1151</span>
+<span class="normal">1152</span>
+<span class="normal">1153</span>
+<span class="normal">1154</span>
+<span class="normal">1155</span>
+<span class="normal">1156</span>
+<span class="normal">1157</span>
+<span class="normal">1158</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">modal</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">n_modes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">freq_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span> <span class="o">|</span> <span class="n">Array</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">inf</span><span class="p">),</span>
@@ -15713,11 +15742,7 @@ but not consumed here.</p>
 
 <a href="#flapjax.coupled.linear_aero_coupled.NonlinearBeamLinearAero.reference_configuration" class="headerlink" title="Permanent link">&para;</a></h5>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">reference_configuration</span><span class="p">(</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="o">|</span> <span class="n">Array</span>
-    <span class="o">|</span> <span class="nb">slice</span>
-    <span class="o">|</span> <span class="nb">int</span>
-    <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">use_f_ext_follower</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">use_f_ext_dead</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroelasticCase</span>
@@ -15755,7 +15780,7 @@ the aero linearisation reference state.</p>
 <span class="normal">239</span>
 <span class="normal">240</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reference_configuration</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">use_f_ext_follower</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">use_f_ext_dead</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AeroelasticCase</span><span class="p">:</span>
@@ -15792,11 +15817,7 @@ the aero linearisation reference state.</p>
 <a href="#flapjax.coupled.linear_aero_coupled.NonlinearBeamLinearAero.dynamic_solve" class="headerlink" title="Permanent link">&para;</a></h5>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">dynamic_solve</span><span class="p">(</span>
     <span class="n">init_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="o">|</span> <span class="n">Array</span>
-    <span class="o">|</span> <span class="nb">slice</span>
-    <span class="o">|</span> <span class="nb">int</span>
-    <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">n_tstep</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">f_ext_follower</span><span class="p">:</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">f_ext_dead</span><span class="p">:</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -15938,7 +15959,7 @@ the aero linearisation reference state.</p>
 <span class="normal">362</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dynamic_solve</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">init_case</span><span class="p">:</span> <span class="n">AeroelasticCase</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">prescribed_dofs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">Array</span> <span class="o">|</span> <span class="nb">slice</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">n_tstep</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">f_ext_follower</span><span class="p">:</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">f_ext_dead</span><span class="p">:</span> <span class="n">Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
