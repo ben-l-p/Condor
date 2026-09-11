@@ -53,7 +53,7 @@ class TestLinXForcePoint:
 
         v_dot_expected = cls.f / m_lump[cls.f_direction_index, cls.f_direction_index]
 
-        init_cond = struct.reference_configuration().to_dynamic()
+        init_cond = struct.reference_configuration(prescribed_dofs=()).to_dynamic()
         init_cond.v_dot = init_cond.v_dot.at[0, cls.f_direction_index].set(
             v_dot_expected
         )
@@ -72,7 +72,6 @@ class TestLinXForcePoint:
             init_state=init_cond,
             n_tstep=n_tstep,
             dt=dt,
-            prescribed_dofs=None,
             f_ext_follower=jnp.zeros((n_tstep, 1, 6))
             .at[:, 0, cls.f_direction_index]
             .set(cls.f)

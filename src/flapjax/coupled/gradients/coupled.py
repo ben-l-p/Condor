@@ -1446,8 +1446,8 @@ class CoupledAeroelastic(BaseCoupledAeroelastic):
 
     def trim(
         self,
-        prescribed_dofs: Sequence[int] | Array | slice | int | None,
-        zero_force_dofs: Sequence[int] | Array | slice | int | None,
+        prescribed_dofs: Sequence[int] | Array | slice | int,
+        zero_force_dofs: Sequence[int] | Array | slice | int,
         trim_cs: Sequence[str | Sequence[str]] | str | None,
         thrust_nodes: Sequence[str | Sequence[str]] | str | None,
         trim_orientation: str | Sequence[str] | None = "x",

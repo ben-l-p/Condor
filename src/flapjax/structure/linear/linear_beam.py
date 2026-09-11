@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from typing import TYPE_CHECKING, Literal
 
 from jax import Array, vmap
@@ -15,7 +16,7 @@ from flapjax.structure.linear.data_structures import (
     StructureOutputUnflattened,
     StructureStateUnflattened,
 )
-from flapjax.structure.utils import transform_nodal_vect
+from flapjax.structure.utils import get_solve_dofs, transform_nodal_vect
 from flapjax.utils.constants import BASE_LOBATTO_ORDER
 from flapjax.utils.linear import LinearComponent, LinearModel, LinearSystem, SliceEntry
 
@@ -45,9 +46,18 @@ class LinearBeam(
         modal_inputs: bool = False,
         modal_outputs: bool = False,
         int_order: Literal[3, 4, 5] = BASE_LOBATTO_ORDER,
+        prescribed_dofs: Sequence[int] | Array | slice | int | None = None,
     ):
-        self.free_dofs: tuple = reference.free_dofs
-        self.n_free_dof: int = len(reference.free_dofs)
+        if prescribed_dofs is not None:
+            prescribed_dofs = beam.make_prescribed_dofs_tuple(prescribed_dofs)
+            free_dofs = get_solve_dofs(
+                n_dof=beam.n_dof, prescribed_dofs=prescribed_dofs
+            )
+        else:
+            # inherit from the reference by default
+            free_dofs = reference.free_dofs
+        self.free_dofs: tuple = free_dofs
+        self.n_free_dof: int = len(free_dofs)
         self.n_nodes: int = beam.n_nodes
         self.modal_states: bool = n_modes is not None
         self.modal_inputs: bool = modal_inputs

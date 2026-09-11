@@ -217,7 +217,7 @@ class NonlinearBeamLinearAero:
 
     def reference_configuration(
         self,
-        prescribed_dofs: Sequence[int] | Array | slice | int | None,
+        prescribed_dofs: Sequence[int] | Array | slice | int,
         use_f_ext_follower: bool = False,
         use_f_ext_dead: bool = False,
     ) -> AeroelasticCase:
@@ -242,7 +242,7 @@ class NonlinearBeamLinearAero:
     def dynamic_solve(
         self,
         init_case: AeroelasticCase | None,
-        prescribed_dofs: Sequence[int] | Array | slice | int | None,
+        prescribed_dofs: Sequence[int] | Array | slice | int,
         n_tstep: int,
         f_ext_follower: Array | None = None,
         f_ext_dead: Array | None = None,

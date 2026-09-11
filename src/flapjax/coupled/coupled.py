@@ -23,7 +23,6 @@ from flapjax.structure import BeamStructure, StructureCase
 from flapjax.structure.time_integration import TimeIntegrator
 from flapjax.structure.utils import (
     get_solve_dofs,
-    input_dof_index_to_tuple,
     transform_nodal_vect,
 )
 from flapjax.utils.constants import BASE_LOBATTO_ORDER
@@ -132,7 +131,7 @@ class BaseCoupledAeroelastic:
 
     def reference_configuration(
         self,
-        prescribed_dofs: tuple[int, ...],
+        prescribed_dofs: Sequence[int] | Array | slice | int,
         horseshoe: bool = False,
         use_f_ext_follower: bool = False,
         use_f_ext_dead: bool = False,
@@ -148,6 +147,7 @@ class BaseCoupledAeroelastic:
         :param t_init: Initial time
         :return: Static aeroelastic object for undeformed wing
         """
+        prescribed_dofs = self.structure.make_prescribed_dofs_tuple(prescribed_dofs)
         return AeroelasticCase(
             structure=self.structure.reference_configuration(
                 use_f_grav=self.structure.use_gravity,
@@ -163,7 +163,7 @@ class BaseCoupledAeroelastic:
 
     def static_solve(
         self,
-        prescribed_dofs: Sequence[int] | Array | slice | int | None,
+        prescribed_dofs: Sequence[int] | Array | slice | int,
         f_ext_follower: Array | None = None,
         f_ext_dead: Array | None = None,
         t: float | Array = 0.0,
@@ -309,8 +309,8 @@ class BaseCoupledAeroelastic:
     def dynamic_solve(
         self,
         init_case: AeroelasticCase | None,
-        prescribed_dofs: Sequence[int] | Array | slice | int | None,
         n_tstep: int,
+        prescribed_dofs: Sequence[int] | Array | slice | int | None = None,
         f_ext_follower: Array | None = None,
         f_ext_dead: Array | None = None,
         t_init: float = 0.0,
@@ -355,6 +355,13 @@ class BaseCoupledAeroelastic:
                 k: jnp.full(n_tstep, v)
                 for k, v in self.structure.thrust_reference.items()
             }
+
+        if prescribed_dofs is None:
+            if init_case is None:
+                raise ValueError(
+                    "prescribed_dofs must be provided if no init_case is provided."
+                )
+            prescribed_dofs = init_case.structure.prescribed_dofs
 
         # degrees of freedom to constrain or solve for
         prescribed_dofs: tuple[int, ...] = self.structure.make_prescribed_dofs_tuple(
@@ -437,7 +444,9 @@ class BaseCoupledAeroelastic:
         return out
 
     def initialise_dynamic(
-        self, static_case: AeroelasticCase, prescribed_dofs: tuple[int, ...]
+        self,
+        static_case: AeroelasticCase,
+        prescribed_dofs: Sequence[int] | Array | slice | int,
     ) -> AeroelasticCase:
         r"""
         Initialise a dynamic aeroelastic snapshot from a static aeroelastic case. This takes a static aeroelastic case
@@ -460,8 +469,8 @@ class BaseCoupledAeroelastic:
 
         dynamic_case = static_case.to_dynamic(t=None)
         dynamic_case.structure.v = dynamic_case.structure.v.at[:, :3].set(v_local)
-        dynamic_case.structure.prescribed_dofs = input_dof_index_to_tuple(
-            prescribed_dofs
+        dynamic_case.structure.prescribed_dofs = (
+            self.structure.make_prescribed_dofs_tuple(prescribed_dofs)
         )
         dynamic_case.structure.free_dofs = get_solve_dofs(
             n_dof=self.structure.n_dof,
@@ -482,6 +491,7 @@ class BaseCoupledAeroelastic:
         int_order: Literal[3, 4, 5] = BASE_LOBATTO_ORDER,
         *,
         skip_checks: bool = False,
+        prescribed_dofs: Sequence[int] | Array | slice | int | None = None,
     ) -> LinearCoupled:
         return LinearCoupled(
             case=self,
@@ -494,4 +504,5 @@ class BaseCoupledAeroelastic:
             int_order=int_order,
             skip_checks=skip_checks,
             n_struct_modes=n_struct_modes,
+            prescribed_dofs=prescribed_dofs,
         )

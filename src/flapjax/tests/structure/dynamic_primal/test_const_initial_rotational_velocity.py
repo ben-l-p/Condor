@@ -67,7 +67,7 @@ class TestXBeamConstXRotVelocity:
             )
             v_init = v_init.at[2, :3].set(-v_init[0, :3])
 
-        init_cond = struct.reference_configuration().to_dynamic()
+        init_cond = struct.reference_configuration(prescribed_dofs=()).to_dynamic()
         init_cond.v = v_init
 
         if cls.beam_direction_index != cls.v_direction_index:
@@ -78,7 +78,6 @@ class TestXBeamConstXRotVelocity:
             init_state=init_cond,
             n_tstep=n_tstep,
             dt=dt,
-            prescribed_dofs=None,
         )
 
         expected_theta = omega * jnp.arange(n_tstep) * dt

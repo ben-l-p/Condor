@@ -397,7 +397,7 @@ if __name__ == "__main__":
 
     # noinspection bad-argument-type
     dynamic_sol = hale.dynamic_solve(
-        init_case=dynamic_init, prescribed_dofs=None, n_tstep=n_tstep
+        init_case=dynamic_init, prescribed_dofs=(), n_tstep=n_tstep
     )
 
     # plot the transient

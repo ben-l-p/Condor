@@ -36,14 +36,13 @@ class TestConstXVelocityXBeam:
 
         v_init = jnp.zeros((2, 6)).at[:, cls.v_direction_index].set(v_mag)
 
-        init_cond = struct.reference_configuration().to_dynamic()
+        init_cond = struct.reference_configuration(prescribed_dofs=()).to_dynamic()
         init_cond.v = v_init
 
         output = struct.dynamic_solve(
             init_state=init_cond,
             n_tstep=n_tstep,
             dt=dt,
-            prescribed_dofs=None,
             f_ext_follower=None,
             f_ext_dead=None,
             f_ext_aero=None,

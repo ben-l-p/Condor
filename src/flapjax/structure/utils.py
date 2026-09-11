@@ -234,14 +234,12 @@ def get_solve_dofs(n_dof: int, prescribed_dofs: tuple[int, ...]) -> tuple[int, .
 
 
 def input_dof_index_to_tuple(
-    input_dof_index: Array | tuple[int, ...] | None,
+    input_dof_index: Array | tuple[int, ...],
 ) -> tuple[int, ...]:
     if isinstance(input_dof_index, tuple):
         return input_dof_index
     elif isinstance(input_dof_index, Array):
         return tuple(input_dof_index.tolist())
-    elif input_dof_index is None:
-        return ()
     else:
         raise TypeError("Invalid input dof index")
 

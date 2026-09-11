@@ -39,14 +39,13 @@ class TestXGravityPointDrop:
             coords, jnp.zeros((0, 6, 6)), None, m_lump[None, ...]
         )
 
-        init_cond = struct.reference_configuration().to_dynamic()
+        init_cond = struct.reference_configuration(prescribed_dofs=()).to_dynamic()
         init_cond.v_dot = init_cond.v_dot.at[:, cls.g_direction_index].set(cls.g)
 
         output = struct.dynamic_solve(
             init_state=init_cond,
             n_tstep=n_tstep,
             dt=dt,
-            prescribed_dofs=None,
             f_ext_follower=None,
             f_ext_dead=None,
             f_ext_aero=None,

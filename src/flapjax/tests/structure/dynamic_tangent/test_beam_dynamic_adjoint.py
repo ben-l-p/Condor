@@ -51,7 +51,9 @@ class TestBeamTranslationAdjoint:
             (n_nodes - 1, 6),
         )
 
-        init_state = beam.reference_configuration(use_f_ext_follower=True).to_dynamic()
+        init_state = beam.reference_configuration(
+            use_f_ext_follower=True, prescribed_dofs=()
+        ).to_dynamic()
         v_dot_init = jnp.linalg.solve(
             beam.assemble_matrix_from_entries(beam.make_m_t(d=d_ref)),
             jnp.zeros(n_nodes * 6).at[0].set(f_mag),
@@ -69,7 +71,6 @@ class TestBeamTranslationAdjoint:
             f_ext_follower=f_ext,
             f_ext_dead=jnp.zeros_like(f_ext),
             f_ext_aero=None,
-            prescribed_dofs=None,
         )
 
         # extract x coordinate

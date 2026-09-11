@@ -39,14 +39,13 @@ class TestXGravityXBeamDrop:
         )
         struct.set_design_variables(coords, k_cs, m_cs)
 
-        init_cond = struct.reference_configuration().to_dynamic()
+        init_cond = struct.reference_configuration(prescribed_dofs=()).to_dynamic()
         init_cond.v_dot = init_cond.v_dot.at[:, :3].set(g_vec[None, :])
 
         output = struct.dynamic_solve(
             init_state=init_cond,
             n_tstep=n_tstep,
             dt=dt,
-            prescribed_dofs=None,
             f_ext_follower=None,
             f_ext_dead=None,
             f_ext_aero=None,

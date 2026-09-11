@@ -33,7 +33,7 @@ class TestParallelSpaghetti:
                 f_ext_follower=None,
                 f_ext_dead=f_2d,
                 f_ext_aero=None,
-                prescribed_dofs=None,
+                prescribed_dofs=(),
             )
 
         solutions = jax.vmap(solve)(stacked_case)

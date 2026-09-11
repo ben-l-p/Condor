@@ -555,16 +555,17 @@ class BaseBeamStructure:
 
     def reference_configuration(
         self,
+        prescribed_dofs: Sequence[int] | Array | slice | int,
         use_f_ext_follower: bool = True,
         use_f_ext_dead: bool = True,
         use_f_aero: bool = True,
         use_f_grav: bool = True,
-        prescribed_dofs: tuple[int, ...] = (),
     ) -> StructureCase:
         r"""
         Get the reference configuration of the structure.
         :return: Structure dataclass containing reference configuration.
         """
+        prescribed_dofs = self.make_prescribed_dofs_tuple(prescribed_dofs)
         return StructureCase(
             hg=self.hg0,
             conn=self.connectivity,
@@ -843,7 +844,9 @@ class BaseBeamStructure:
         """
         # (n_lumped, 3, 3)
         d_g_d_omega = vmap(vec_to_skew, 0, 0)(
-            jnp.einsum("ikj,k->ij", rmat[self.m_lumped_index, ...], jnp.array(self.gravity_vec))
+            jnp.einsum(
+                "ikj,k->ij", rmat[self.m_lumped_index, ...], jnp.array(self.gravity_vec)
+            )
         )
 
         return (
@@ -1236,6 +1239,7 @@ class BaseBeamStructure:
         n_modes: int | None = None,
         modal_inputs: bool = False,
         modal_outputs: bool = False,
+        prescribed_dofs: Sequence[int] | Array | slice | int | None = None,
     ) -> LinearBeam:
         r"""
         Linearise the beam about a given static structure case. This creates a LinearBeam object which can be used for
@@ -1245,6 +1249,7 @@ class BaseBeamStructure:
         :param n_modes: If not None, the linearised system uses modal state coordinates truncated to this many modes.
         :param modal_inputs: If True, external forcing inputs are provided as modal forces (requires n_modes).
         :param modal_outputs: If True, outputs are exposed as modal coordinates (requires n_modes).
+        :param prescribed_dofs: If provided, overrides the prescribed DOFs from the reference case.
         :return: Continuous-time linearised beam object.
         """
         return LinearBeam(
@@ -1254,6 +1259,7 @@ class BaseBeamStructure:
             n_modes=n_modes,
             modal_inputs=modal_inputs,
             modal_outputs=modal_outputs,
+            prescribed_dofs=prescribed_dofs,
         )
 
     def _make_c_t(
@@ -2016,9 +2022,8 @@ class BaseBeamStructure:
 
     def make_prescribed_dofs_tuple(
         self,
-        prescribed_dofs: Sequence[int] | Array | slice | int | None,
+        prescribed_dofs: Sequence[int] | Array | slice | int,
     ) -> tuple[int, ...]:
-        # degrees of freedom which are prescribed
         if isinstance(prescribed_dofs, slice):
             return tuple(jnp.arange(self.n_dof)[prescribed_dofs].tolist())
         elif isinstance(prescribed_dofs, Sequence):
@@ -2027,8 +2032,6 @@ class BaseBeamStructure:
             return (prescribed_dofs,)
         elif isinstance(prescribed_dofs, Array):
             return tuple(jnp.atleast_1d(prescribed_dofs).tolist())
-        elif prescribed_dofs is None:
-            return ()
         else:
             raise TypeError(
                 "prescribed_dofs must be an int, slice, Sequence[int], or Array"
@@ -2036,7 +2039,7 @@ class BaseBeamStructure:
 
     def static_solve(
         self,
-        prescribed_dofs: Sequence[int] | Array | slice | int | None,
+        prescribed_dofs: Sequence[int] | Array | slice | int,
         f_ext_follower: Array | None = None,
         f_ext_dead: Array | None = None,
         f_ext_aero: Array | None = None,
@@ -2578,9 +2581,7 @@ class BaseBeamStructure:
 
             # thrust force
             thrust_alpha: dict[str, Array] = {
-                k: self.time_integrator.compute_f_alpha(
-                    f_nm1=v[i_ts - 1], f_n=v[i_ts]
-                )
+                k: self.time_integrator.compute_f_alpha(f_nm1=v[i_ts - 1], f_n=v[i_ts])
                 for k, v in thrust_t_.items()
             }
             thrust_n: dict[str, Array] = {k: v[i_ts] for k, v in thrust_t_.items()}
@@ -3041,9 +3042,9 @@ class BaseBeamStructure:
     def dynamic_solve(
         self,
         init_state: StructureCase | None,
-        prescribed_dofs: Sequence[int] | Array | slice | int | None,
         n_tstep: int,
         dt: Array | float,
+        prescribed_dofs: Sequence[int] | Array | slice | int | None = None,
         f_ext_follower: Array | None = None,
         f_ext_dead: Array | None = None,
         f_ext_aero: Array | None = None,
@@ -3055,7 +3056,8 @@ class BaseBeamStructure:
         :param init_state: Initial state of the structure, either static or a
         dynamic snapshot. If None, the reference configuration is used with zero
         velocities.
-        :param prescribed_dofs: Degrees of freedom which are prescribed (not solved for).
+        :param prescribed_dofs: Degrees of freedom which are prescribed (not solved for). If None, inherit
+        from the initial state.
         :param n_tstep: Number of time steps to simulate.
         :param dt: Time step length.
         :param f_ext_follower: Following external forces array, ``(n_tstep, n_node, 6)``, ``(n_node, 6)`` or None for zero external follower forces.
@@ -3075,6 +3077,12 @@ class BaseBeamStructure:
             if thrust_t is not None
             else {k: jnp.full(n_tstep, v) for k, v in self.thrust_reference.items()}
         )
+
+        if prescribed_dofs is None:
+            # inherit prescribed dofs from initial state
+            if init_state is None:
+                raise ValueError("prescribed_dofs cannot be None if init_state is None")
+            prescribed_dofs = init_state.prescribed_dofs
 
         # degrees of freedom to solve for
         prescribed_dofs_arr = self.make_prescribed_dofs_tuple(prescribed_dofs)
@@ -3181,6 +3189,7 @@ class BaseBeamStructure:
                 use_f_aero=f_ext_aero is not None,
                 use_f_ext_dead=f_ext_dead is not None,
                 use_f_ext_follower=f_ext_follower is not None,
+                prescribed_dofs=tuple(prescribed_dofs_arr),
             ).to_dynamic(t=None)
         elif not init_state.is_dynamic:
             init_state_ = init_state.to_dynamic(t=None)

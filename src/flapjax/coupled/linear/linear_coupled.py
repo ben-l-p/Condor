@@ -69,7 +69,13 @@ class LinearCoupled(
         int_order: Literal[3, 4, 5] = BASE_LOBATTO_ORDER,
         *,
         skip_checks: bool = False,
+        prescribed_dofs: Sequence[int] | Array | slice | int | None = None,
     ):
+        if prescribed_dofs is not None:
+            prescribed_dofs = case.structure.make_prescribed_dofs_tuple(
+                prescribed_dofs
+            )
+
         self.aero = LinearUVLM(
             case=case.aero,
             reference=reference.aero,
@@ -86,11 +92,15 @@ class LinearCoupled(
             dt=case.aero.dt,
             n_modes=n_struct_modes,
             int_order=int_order,
+            prescribed_dofs=prescribed_dofs,
         )
 
-        self.n_beam_nodal_dof: int = case.structure.n_dof - len(
-            reference.structure.prescribed_dofs
+        effective_prescribed = (
+            prescribed_dofs
+            if prescribed_dofs is not None
+            else reference.structure.prescribed_dofs
         )
+        self.n_beam_nodal_dof: int = case.structure.n_dof - len(effective_prescribed)
         self.n_beam_input_dof: int = (
             self.structure.n_modes
             if self.structure.modal_inputs
@@ -111,7 +121,7 @@ class LinearCoupled(
         self.free_dofs: Array = jnp.array(
             get_solve_dofs(
                 n_dof=case.structure.n_dof,
-                prescribed_dofs=reference.structure.prescribed_dofs,
+                prescribed_dofs=effective_prescribed,
             )
         )
 

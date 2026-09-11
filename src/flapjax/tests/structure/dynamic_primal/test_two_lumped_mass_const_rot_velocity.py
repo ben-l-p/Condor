@@ -72,7 +72,7 @@ class TestTwoXLumpedMassConstXRotVelocity:
             )
             v_init = v_init.at[1, :3].set(-v_init[0, :3])
 
-        init_cond = struct.reference_configuration().to_dynamic()
+        init_cond = struct.reference_configuration(prescribed_dofs=()).to_dynamic()
         init_cond.v = v_init
         init_cond.v_dot = v_dot_init
 
@@ -84,7 +84,6 @@ class TestTwoXLumpedMassConstXRotVelocity:
             init_state=init_cond,
             n_tstep=n_tstep,
             dt=dt,
-            prescribed_dofs=None,
             f_ext_aero=None,
             f_ext_dead=None,
             f_ext_follower=None,

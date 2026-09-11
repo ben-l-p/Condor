@@ -45,7 +45,9 @@ class TestLumpedMassTranslationAdjoint:
         f_ext = jnp.zeros((n_tstep, n_nodes, 6))
         f_ext = f_ext.at[:, 0, 0].set(f_mag)
 
-        init_state = beam.reference_configuration(use_f_ext_follower=True).to_dynamic()
+        init_state = beam.reference_configuration(
+            use_f_ext_follower=True, prescribed_dofs=()
+        ).to_dynamic()
         init_state.a = init_state.a.at[0, 0].set(f_mag / m_l[0, 0, 0])
         init_state.v_dot = init_state.v_dot.at[0, 0].set(f_mag / m_l[0, 0, 0])
         assert init_state.f_ext_follower is not None, (
@@ -60,7 +62,6 @@ class TestLumpedMassTranslationAdjoint:
             f_ext_follower=f_ext,
             f_ext_dead=jnp.zeros_like(f_ext),
             f_ext_aero=None,
-            prescribed_dofs=None,
         )
 
         # extract x coordinate
